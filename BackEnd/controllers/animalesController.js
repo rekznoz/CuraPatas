@@ -36,3 +36,20 @@ exports.getAnimales = async (req, res) => {
         res.status(500).json({ error: 'Error al obtener los animales', details: error.message });
     }
 };
+
+exports.removeAnimal = async (req, res) => {
+    const { nombre } = req.body;
+    // Validación de campos
+    if (!nombre) {
+        return res.status(400).json({ error: 'Todos los campos son requeridos' });
+    }
+
+    try {
+        // Crear instancia del modelo
+        const animal = new Animales({ nombre });
+        await animal.deleteOne(animal);
+        res.json({ message: "Animal borrado con éxito", animal });
+    } catch (error) {
+        res.status(500).json({ error: 'Error al borrar el animal', details: error.message });
+    }
+};
