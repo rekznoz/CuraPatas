@@ -5,7 +5,7 @@ exports.createAnimal = async (req, res) => {
     const { nombre, especie, raza, edad, estadoSalud, duenio, fechaRegistro } = req.body;
 
     // Validación de campos
-    if (!nombre || !especie || !raza || !edad || !estadoSalud || !duenio || !fechaRegistro) {
+    if (!nombre ) {
         return res.status(400).json({ error: 'Todos los campos son requeridos' });
     }
 
