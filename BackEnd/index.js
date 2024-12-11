@@ -14,7 +14,6 @@ connectDB()
 
 app.use('/animales', require('./routes/animalesRoutes'))
 
-
 // Iniciar el servidor
 const PORT = 3000;
 const HOST = '0.0.0.0'
