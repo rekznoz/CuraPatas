@@ -22,7 +22,6 @@ app.listen(PORT, HOST, () => {
 });
 
 
-
 // app.post("/perritos", async (req, res) => {
 //   try {
 //     const { nombre, raza, edad, estadoSalud, duenio } = req.body;
