@@ -38,18 +38,49 @@ exports.getAnimales = async (req, res) => {
 };
 
 exports.removeAnimal = async (req, res) => {
-    const { nombre } = req.body;
+    const { nombre, especie, raza, edad, estadoSalud, duenio, fechaRegistro } = req.body;
+
     // Validación de campos
     if (!nombre) {
-        return res.status(400).json({ error: 'Todos los campos son requeridos' });
+        return res.status(400).json({ error: 'El nombre es requerido para eliminar un animal' });
     }
 
     try {
-        // Crear instancia del modelo
-        const animal = new Animales({ nombre });
-        await animal.deleteOne(animal);
+        // Buscar y eliminar el animal por nombre
+        const animal = await Animales.findOneAndDelete({ nombre });
+
+        if (!animal) {
+            return res.status(404).json({ error: 'Animal no encontrado' });
+        }
+
         res.json({ message: "Animal borrado con éxito", animal });
     } catch (error) {
         res.status(500).json({ error: 'Error al borrar el animal', details: error.message });
+    }
+};
+
+exports.updateAnimal = async (req, res) => {
+    const { nombre, especie, raza, edad, estadoSalud, duenio, fechaRegistro } = req.body;
+
+    // Validación de campos
+    if (!nombre || !especie || !raza || !edad || !estadoSalud || !duenio || !fechaRegistro) {
+        return res.status(400).json({ error: 'Todos los campos son requeridos para actualizar un animal' });
+    }
+
+    try {
+        // Buscar y actualizar el animal por nombre
+        const animal = await Animales.findOneAndUpdate(
+            { nombre },
+            { especie, raza, edad, estadoSalud, duenio, fechaRegistro },
+            { new: true } // Retorna el documento actualizado
+        );
+
+        if (!animal) {
+            return res.status(404).json({ error: 'Animal no encontrado' });
+        }
+
+        res.json({ message: "Animal actualizado con éxito", animal });
+    } catch (error) {
+        res.status(500).json({ error: 'Error al actualizar el animal', details: error.message });
     }
 };
