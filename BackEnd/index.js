@@ -21,7 +21,6 @@ app.listen(PORT, HOST, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
 
-
 // app.post("/perritos", async (req, res) => {
 //   try {
 //     const { nombre, raza, edad, estadoSalud, duenio } = req.body;
