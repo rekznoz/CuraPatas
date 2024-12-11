@@ -16,7 +16,7 @@ app.use('/animales', require('./routes/animalesRoutes'))
 
 // Iniciar el servidor
 const PORT = 3000;
-const HOST = '192.99.15.53'
+const HOST = '0.0.0.0'
 app.listen(PORT, HOST, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
