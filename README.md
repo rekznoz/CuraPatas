@@ -59,7 +59,7 @@
 - 🏡 **Adopción y hogar temporal**: Mascotas buscando familia o refugio temporal.
 - 💞 **Parejas para mascotas**: Encuentra compañeros para tus animales.
 
-#### Posibles Endspoints
+#### ⚙️ Posibles Endpoints
 
 - `GET /animales`: Retorna todas las mascotas registradas.
 - `POST /animales`: Registra una nueva mascota.
@@ -83,7 +83,7 @@
 - 📅 **Reserva de servicios**.
 - ⭐ **Calificaciones y comentarios**.
 
-#### Posibles Endpoints
+#### ⚙️ Posibles Endpoints
 
 - `GET /consultas`: Retorna todos los servicios disponibles.
 - `POST /consultas`: Registra un nuevo servicio.
@@ -102,7 +102,7 @@
 - 🔍 Filtros: Por ubicación, tamaño, raza, etc.
 - 📝 Formulario para proceso de adopción.
 
-#### Posibles Endpoints
+#### ⚙️ Posibles Endpoints
 
 - `GET /adopciones`: Retorna todas las mascotas en adopción.
 - `POST /adopciones`: Registra una nueva mascota en adopción.
@@ -121,7 +121,7 @@
 - ✏️ **Contribuciones**: Publicaciones por veterinarios.
 - ⭐ **Calificación de artículos**.
 
-#### Posibles Endpoints
+#### ⚙️ Posibles Endpoints
 
 - `GET /blog`: Retorna todos los artículos del blog.
 - `POST /blog`: Registra un nuevo artículo.
@@ -131,15 +131,15 @@
 
 ---
 
-#### Usuarios
+#### 🌐 Usuarios
 
-- Registro de usuarios
-- Inicio de sesión
-- Perfil de usuario
-- Actualización de perfil
-- Roles de usuario
+- 📝 Registro de usuarios
+- 🔑 Inicio de sesión
+- 👤 Perfil de usuario
+- ✏️ Actualización de perfil
+- 🛠️ Roles de usuario
 
-#### Posibles Endpoints
+#### ⚙️ Posibles Endpoints
 
 - `POST /usuarios`: Registra un nuevo usuario.
 - `POST /usuarios/login`: Inicia sesión de un usuario.
