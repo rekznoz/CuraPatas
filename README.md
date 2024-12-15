@@ -1,4 +1,3 @@
----  
 
 ## 🐾 **CuraPatas: Una plataforma para el cuidado de tus mascotas**
 
