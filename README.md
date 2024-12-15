@@ -1,5 +1,10 @@
+# 🐾 **CuraPatas: Una plataforma para el cuidado de tus mascotas**
 
-## 🐾 **CuraPatas: Una plataforma para el cuidado de tus mascotas**
+### 👨‍💻 Desarrollado por:
+
+- 👩‍💻 **Natalia Cortes Bernal**
+- 👨‍💻 **Rafael Cabrera Perejón**
+- 👨‍💻 **José Alfonso Salazar Ramos**
 
 ### 📝 **Descripción de la funcionalidad principal**
 
@@ -121,7 +126,7 @@
 
 - ✅ **Un Administrador debe aprobar las solicitudes de adopción**
 - 📝 **Un Administrador debe registrar las mascotas en adopción**
-- ❌ **Un Administrador debe eliminar las mascotas adoptadas del registro**  
+- ❌ **Un Administrador debe eliminar las mascotas adoptadas del registro**
 
 ---  
 
