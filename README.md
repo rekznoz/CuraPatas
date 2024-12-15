@@ -95,6 +95,12 @@
 - `GET /consultas/paseadores`: Retorna los servicios de paseadores.
 - `GET /consultas/emergencia`: Retorna los servicios de emergencia.
 
+#### 🛠️ Acciones Necesarias
+
+- Un Administrador debe aprobar los servicios registrados.
+- Un Administrador debe eliminar los servicios no aprobados.
+- un Administrador debe aprobar la compra de servicios.
+
 ---  
 
 #### 🐾 **Adopción Responsable**
@@ -110,6 +116,12 @@
 - `PUT /adopciones/:id`: Actualiza la información de una mascota en adopción.
 - `DELETE /adopciones/:id`: Elimina una mascota del registro de adopciones.
 - `GET /adopciones/filtros`: Retorna las mascotas en adopción según filtros.
+
+#### 🛠️ Acciones Necesarias
+
+- Un Administrador debe aprobar las solicitudes de adopción.
+- Un Administrador debe registrar las mascotas en adopción.
+- Un Administrador debe eliminar las mascotas adoptadas del registro.
 
 ---  
 
