@@ -1,12 +1,18 @@
 :root{
+    /* Paleta de olores */
+    --color-fondo: #fff;
+    --color-letra: #333;
+    --color-primario: #3fa8ab;
+
     /* Tamaños */
-    --xl: 22px;
+    --xl: 20px;
     --l: 18px;
     --m: 16px;
     --s: 14px;
     --xs: 12px;
 
     /* Tipografias */
+
 
     /* Espacios */
     --espaciado-grande: 1.5em;
@@ -17,10 +23,6 @@
 
 }
 
-.tema-claro{
-    --color-fondo: #fff;
-    --color-letra: #333;
-}
 .tema-oscuro{
     --color-fondo: #333;
     --color-letra: #fff;
