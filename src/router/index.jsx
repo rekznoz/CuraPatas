@@ -1,22 +1,27 @@
-import { createBrowserRouter } from "react-router-dom";
+import {createBrowserRouter} from "react-router-dom";
 import LayoutPublic from "../layouts/LayoutPublic";
-import NotFound from "../pages/NotFound";
-import Home from "../pages/Home"
+import Error from "../pages/Error.jsx";
+import Inicio from "../pages/Inicio.jsx";
+import Contacto from "../pages/Contacto.jsx";
+
 export const router = createBrowserRouter([
-  {
-    path: "/", // Ruta base de la aplicación
-    element: <LayoutPublic />, // Layout público
-    errorElement: <NotFound />, // Página de error en caso de ruta no encontrada
-    children: [
-      {
-        errorElement: <NotFound />, // Página de error para las rutas secundarias
+    {
+        path: "/", // Ruta base de la aplicación
+        element: <LayoutPublic/>, // Layout público
+        errorElement: (
+            <LayoutPublic>
+                <Error/>
+            </LayoutPublic>
+        ), // Página de error en caso de ruta no encontrada
         children: [
-          {
-            index: true, // Página principal
-            element: <Home />, // Componente Home
-          }
+            {
+                index: true,
+                element: <Inicio/>,
+            },
+            {
+                path: "/contacto",
+                element: <Contacto/>,
+            }
         ],
-      },
-    ],
-  },
+    },
 ]);
