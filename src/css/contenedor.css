@@ -30,7 +30,7 @@
 
 #root .footer {
     grid-area: 9 / 1 / 10 / 10;
-    background: #666666;
+    background: var(--fondo-principal);
     padding: 10px;
     text-align: center;
 }
