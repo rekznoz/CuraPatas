@@ -1,9 +1,14 @@
 :root{
 
+    /* Colores */
     --fondo-principal: #f0f0f0;
-    --color-texto-principal: #000;
+    --color-texto-principal: #00000;
     --color-texto-principal-politicas: #777777;
     --color-texto-principal-registro: #777777;
+
+    /* Footer */
+    --color-footer-texto: #CCCCCC;
+    --color-footer-enlaces: #0096ff;
 
     /* Tamaños */
     --xl: 22px;
@@ -24,8 +29,8 @@
 }
 
 .modo-oscuro{
-    --fondo-principal: #333;
-    --color-texto-principal: #fff;
+    --fondo-principal: #333333;
+    --color-texto-principal: #ffffff;
     --color-texto-principal-politicas: #cccccc;
     --color-texto-principal-registro: #cccccc;
 }
