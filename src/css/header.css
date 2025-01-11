@@ -1,40 +1,134 @@
+/** Borde superior **/
 
 .header-top {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    align-items: center;
     padding: 10px 20px;
     border-bottom: 1px solid #ccc;
     font-size: 14px;
+    background-color: var(--fondo-principal);
 }
+
+.header-top .header-contact {
+    font-weight: bold;
+    color: var(--color-texto-principal);
+}
+
+.header-top .header-hours {
+    font-weight: bold;
+    color: var(--color-texto-principal);
+}
+
+.header-top .oscuro-claro img {
+    max-height: 30px;
+}
+
+@media screen and (max-width: 768px) {
+
+    .header-top {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .header-top .header-contact {
+        font-size: 12px;
+    }
+
+    .header-top .header-hours {
+        font-size: 10px;
+    }
+
+}
+
+/** Parte inferior **/
 
 .header-main {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
+    background-color: var(--fondo-principal);
 }
 
-.logo img {
+.header-main .logo img {
     max-height: 60px;
 }
 
-.nav ul {
+.header-main .nav ul {
     list-style: none;
     display: flex;
     margin: 0;
     padding: 0;
 }
 
-.nav ul li {
+.header-main .nav ul li {
     margin: 0 10px;
 }
 
-.nav ul li a {
+.header-main .nav ul li a, span {
     text-decoration: none;
-    color: #333;
     font-weight: bold;
+    color: var(--color-texto-principal);
 }
 
-.nav ul li a:hover {
-    color: #b30000;
+.header-main .nav ul li a:hover, span:hover {
+    color: #0095FF;
+    cursor: pointer;
+}
+
+/* Hamburger Menu */
+.header-main .hamburger {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+    .header-main .nav ul li a, span {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .header-main .nav ul li a, span {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+
+    .header-main .nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 20%; /* Justo debajo del contenedor */
+        left: 0;
+        right: 0;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        z-index: 10; /* Para que quede sobre otros elementos */
+    }
+
+    .header-main .nav ul {
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+    }
+
+    .header-main .nav ul li {
+        margin: 10px 0;
+    }
+
+    .header-main .hamburger {
+        display: block;
+    }
+
+    .header-main .nav.show {
+        display: flex;
+    }
+
 }
