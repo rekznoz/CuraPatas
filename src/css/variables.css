@@ -1,6 +1,9 @@
 :root{
 
     --fondo-principal: #f0f0f0;
+    --color-texto-principal: #000;
+    --color-texto-principal-politicas: #777777;
+    --color-texto-principal-registro: #777777;
 
     /* Tamaños */
     --xl: 22px;
@@ -20,11 +23,9 @@
 
 }
 
-.tema-claro{
-    --color-fondo: #fff;
-    --color-letra: #333;
-}
-.tema-oscuro{
-    --color-fondo: #333;
-    --color-letra: #fff;
+.modo-oscuro{
+    --fondo-principal: #333;
+    --color-texto-principal: #fff;
+    --color-texto-principal-politicas: #cccccc;
+    --color-texto-principal-registro: #cccccc;
 }
