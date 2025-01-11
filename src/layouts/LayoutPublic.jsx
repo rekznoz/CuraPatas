@@ -2,6 +2,7 @@ import React from 'react'
 import {Outlet} from "react-router-dom";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
+import Login from "../components/Login.jsx";
 
 function LayoutPublic() {
     return (
@@ -11,6 +12,7 @@ function LayoutPublic() {
                 <Outlet/>
             </main>
             <Footer/>
+            <Login/>
         </>
     )
 }
