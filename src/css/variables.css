@@ -1,5 +1,5 @@
 :root{
-
+  
     /* Colores */
     --fondo-principal: #f0f0f0;
     --color-texto-principal: #00000;
@@ -11,13 +11,14 @@
     --color-footer-enlaces: #0096ff;
 
     /* Tamaños */
-    --xl: 22px;
+    --xl: 20px;
     --l: 18px;
     --m: 16px;
     --s: 14px;
     --xs: 12px;
 
     /* Tipografias */
+
 
     /* Espacios */
     --espaciado-grande: 1.5em;
