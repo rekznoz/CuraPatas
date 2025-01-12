@@ -3,6 +3,7 @@ import LayoutPublic from "../layouts/LayoutPublic";
 import Error from "../pages/Error.jsx";
 import Inicio from "../pages/Inicio.jsx";
 import Contacto from "../pages/Contacto.jsx";
+import PerfilUsuario from "../pages/PerfilUsuario.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
             {
                 path: "/contacto",
                 element: <Contacto/>,
+            },
+            {
+                path: "usuario",
+                element: <PerfilUsuario/>,
             }
         ],
     },
