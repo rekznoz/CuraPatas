@@ -1,0 +1,148 @@
+.modal-login-registro {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-login-registro .contenedor-login {
+    background-color: var(--fondo-principal);
+    margin: 5% auto;
+    border: 1px solid #888;
+    width: 30%;
+    border-radius: 20px;
+}
+
+.modal-login-registro .FormError {
+    color: #ff0018;
+    font-size: 1em;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #000000;
+    padding-top: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.contenedor-login h2 {
+    text-align: center;
+    color: var(--color-texto-principal);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.contenedor-login .contenedor-entrada {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    box-sizing: border-box;
+}
+
+.contenedor-login .contenedor-entrada input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--color-texto-principal);
+}
+
+.contenedor-login .politicas-login {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.politicas-login .enlace-politicas {
+    color: var(--color-texto-principal-politicas);
+    text-decoration: none;
+}
+
+.contenedor-login .contenedor-login-botones {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+.contenedor-login-botones .botonLogin {
+    background-color: #0b488c;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.contenedor-login-botones .botonLogin:hover {
+    background-color: #0874ea;
+}
+
+.contenedor-login .contenedor-texto-registro {
+    text-align: center;
+}
+
+.contenedor-login .contenedor-texto-registro span {
+    color: var(--color-texto-principal);
+    cursor: text;
+}
+
+.contenedor-login .contenedor-texto-registro .click-registro {
+    color: var(--color-texto-principal-registro);
+    cursor: pointer;
+    padding: 10px;
+}
+
+.contenedor-login .contenedor-texto-registro .click-registro:hover {
+    color: var(--color-texto-principal-registro);
+    font-weight: bold;
+}
+
+.contenedor-login-botones .botonRegistro {
+    background-color: #0b488c;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.contenedor-login-botones .botonRegistro:hover {
+    background-color: #0874ea;
+}
+
+.contenedor-login .contenedor-login-botones .botonCerrarLogin {
+    background-color: #7a0014;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.contenedor-login .contenedor-login-botones .botonCerrarLogin:hover {
+    background-color: #af0012;
+}
+
+@media screen and (max-width: 1300px) {
+    .modal-login-registro .contenedor-login {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .modal-login-registro .contenedor-login {
+        width: 80%;
+    }
+}
+
