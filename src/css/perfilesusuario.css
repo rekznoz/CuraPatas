@@ -78,6 +78,13 @@
     font-size: 14px;
 }
 
+@media (max-width: 999px) {
+    .informacion-perfil-usuario {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
 /* Estilos de la sección de mascotas */
 
 .seccion-mascotas-perfil {
@@ -159,3 +166,12 @@
     margin: 0;
 }
 
+@media (max-width: 999px) {
+    .encabezado-seccion-mascotas {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .carta-mascota {
+        width: 100%;
+    }
+}
