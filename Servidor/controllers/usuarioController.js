@@ -58,8 +58,8 @@ exports.eliminarUsuario = async (req, res) => {
 
     try {
         // Buscar y eliminar el usuario por nombre
-        const Usuario = await Users.find({ username });
-        const { _id } = Usuario[0]
+        const nombreUsuario = await Users.find(usuario);
+        const { _id } = nombreUsuario[0]
         const UsuarioBorrado = await Users.findByIdAndDelete({ _id });
         
         res.json({ message: "Usuario borrado con éxito", UsuarioBorrado });
