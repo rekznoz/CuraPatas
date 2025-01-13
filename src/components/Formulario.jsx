@@ -1,24 +1,26 @@
 import React from 'react'
 import {Formik,Form} from "formik";
-import * as Yup from "Yup";
+import * as Yup from "yup";
+
+const validationSchema = Yup.object({
+    nombre: Yup.string()
+        .required('El nombre es obligatorio')
+        .min(3, 'Debe tener mínimo 3 caracteres'),
+
+    apellido: Yup.string()
+        .required('El apellido es obligatorio')
+        .min(4, 'El apellido debe tener mínimo 4 caracteres'),
+
+    email: Yup.string()
+        .required('El email es obligatorio')
+        .email('El email debe ser válido'),
+
+    telefono: Yup.string()
+        .required('El teléfono es obligatorio')
+        .min(9, 'Debe contener 9 números')
+});
+
 const Formulario = () => {
-    const validationSchema = Yup.object({
-        nombre: Yup.string()
-            .required('El nombre es obligatorio')
-            .min(3, 'Debe tener mínimo 3 caracteres'),
-
-        apellido: Yup.string()
-            .required('El apellido es obligatorio')
-            .min(4, 'El apellido debe tener mínimo 4 caracteres'),
-
-        email: Yup.string()
-            .required('El email es obligatorio')
-            .email('El email debe ser válido'),
-
-        telefono: Yup.string()
-            .required('El teléfono es obligatorio')
-            .min(9, 'Debe contener 9 números')
-    });
 
     const onSubmit = (values) => {
         console.log(values);
