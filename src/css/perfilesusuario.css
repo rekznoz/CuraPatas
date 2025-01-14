@@ -188,6 +188,12 @@
     padding-right: 25%;
 }
 
+.formulario-agregar-mascota form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .formulario-agregar-mascota h4 {
     margin: 0;
     font-size: 20px;
@@ -195,13 +201,13 @@
     color: var(--color-texto-principal);
 }
 
-.formulario-agregar-mascota input {
+.formulario-agregar-mascota form input {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-.formulario-agregar-mascota button {
+.formulario-agregar-mascota form button {
     background: #007bff;
     color: white;
     border: none;
@@ -210,6 +216,6 @@
     cursor: pointer;
 }
 
-.formulario-agregar-mascota button:hover {
+.formulario-agregar-mascota form button:hover {
     background: #0056b3;
 }
