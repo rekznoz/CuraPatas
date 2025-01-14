@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Users = require('../models/Users');
 const Bycript = require('bcryptjs')
 
-var currentDate = new Date();
+let currentDate = new Date();
 
 exports.crearUsuario = async (req, res) => {
     const {username, email, contraseña} = req.body;
