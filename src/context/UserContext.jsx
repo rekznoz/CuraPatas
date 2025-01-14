@@ -1,23 +1,35 @@
-import React, {createContext, useEffect} from 'react';
-import {onAuthStateChanged} from "firebase/auth";
+import {createContext, useEffect, useState} from "react"
 
-export const UserContext = createContext();
+export const UsuarioC = createContext()
 
-const UserProvider = ({children}) => {
-    const [user, setUser] = useState(false);
+export default function UsuarioProvider({children}) {
+
+    const [usuario, setUsuario] = useState(null)
+    const [datosUsuario, setDatosUsuario] = useState(null)
+    const [cargando, setCargando] = useState(true)
+
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+        const unsubscribe = auth.onAuthStateChanged(async (user) => {
             if (user) {
-                setUser(user);
+                setUsuario(user)
+                obtenerUsuario(user.uid).then(data => {
+                    setDatosUsuario(data)
+                })
+            } else {
+                setUsuario(null)
+                setDatosUsuario(null)
             }
-        });
-    }, [])
-    if (user === null) return <p>Loading...</p>
-    return (
-        <UserContext.Provider value={{user, setUser}}>
-            {children}
-        </UserContext.Provider>
-    )
-}
+            setCargando(false)
+        })
 
-export default UserProvider;
+        return () => unsubscribe() // Limpia el suscriptor
+    }, [])
+
+    if (!cargando) {
+        return (
+            <UsuarioC.Provider value={{usuario, setUsuario, datosUsuario, setDatosUsuario, cargando}}>
+                {children}
+            </UsuarioC.Provider>
+        )
+    }
+}
