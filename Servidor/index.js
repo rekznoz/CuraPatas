@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 // Conexión a MongoDB
 connectDB()
 
-app.use('/animales', require('./routes/animalesRoutes'))
+app.use('/usuario', require('./routes/usuarioRoutes'))
 
 // Iniciar el servidor
 const PORT = 3000;
