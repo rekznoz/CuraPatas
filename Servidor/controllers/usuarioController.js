@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Users = require('../models/Users');
 const Bycript = require('bcryptjs')
 
-let currentDate = new Date();
 
 exports.crearUsuario = async (req, res) => {
     const {username, email, contraseña} = req.body;
@@ -13,20 +12,20 @@ exports.crearUsuario = async (req, res) => {
     }
     try {
         // Verificar si el email ya está registrado
-        const existeEmail = await User.findOne({email});
+        const existeEmail = await Users.findOne({email});
         if (existeEmail) {
             return res.status(400).json({ error: "El email ya está registrado" });
         }
         // Verificar si el usuario ya esta registrado
-         const existeUsuario = await User.findOne({username});
+         const existeUsuario = await Users.findOne({username});
          if (existeUsuario) {
              return res.status(400).json({ error: "El usuario ya está registrado" });
          }
-         const user = new Users({ username, email, rol:"Usuario", fechaRegistro: currentDate.toLocaleDateString()});
+         const user = new Users({ username, email, contraseña });
         await user.save();
         res.json({message: "Usuario registrado con éxito", user});
     } catch (error) {
-        res.status(500).json({error: 'Error al agregar el animal', details: error.message});
+        res.status(500).json({error: 'Error al agregar el usuario', details: error.message});
     }
 };
 
