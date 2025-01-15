@@ -1,5 +1,5 @@
 import {createContext, useEffect, useState} from "react"
-
+import axios from "axios";
 export const UsuarioC = createContext()
 
 export default function UsuarioProvider({children}) {
@@ -22,7 +22,7 @@ export default function UsuarioProvider({children}) {
             setCargando(false)
         })
 
-        return () => unsubscribe()
+        return () => unsubscribe() // Limpia el suscriptor
     }, [])
 
     if (!cargando) {
