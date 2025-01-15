@@ -65,7 +65,7 @@ export default function Header() {
                         {
                             isAuthenticated ?
                                 <>
-                                    <li><Link to="contacto">PERFIL</Link></li>
+                                    <li><Link to={`/usuario/${user.username}`}>PERFIL</Link></li>
                                     <li><span onClick={logout}>LOGOUT</span></li>
                                 </>
 
