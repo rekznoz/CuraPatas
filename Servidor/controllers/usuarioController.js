@@ -35,8 +35,6 @@ exports.crearUsuario = async (req, res) => {
 exports.login = async (req, res) => {
     const {email, secreto} = req.body;
 
-    console.log(req.body);
-
     if (!email || !secreto) {
         return res.status(400).json({error: 'Todos los campos son requeridos'});
     }
@@ -79,8 +77,8 @@ exports.obtenerUsuarios = async (req, res) => {
 };
 
 exports.obtenerUsuario = async (req, res) => {
-    const {username} = req.body;
-    // Validación de campos
+    const {username} = req.params;
+
     if (!username) {
         return res.status(400).json({error: 'El nombre es requerido para buscar un animal'});
     }
@@ -95,7 +93,20 @@ exports.obtenerUsuario = async (req, res) => {
 }
 
 exports.editarUsuario = async (req, res) => {
-    // Implementar funcionalidad para editar usuarios
+    const {id} = req.params;
+
+    if (!id) {
+        return res.status(400).json({error: 'El ID es requerido para editar un usuario'});
+    }
+
+    try {
+        // Buscar y actualizar el usuario por ID
+        const usuarioActualizado = await Users.findByIdAndUpdate(id, req.body, {new: true});
+        res.json({message: "Usuario actualizado con éxito", usuarioActualizado});
+    } catch (error) {
+        res.status(500).json({error: 'Error al editar el usuario', details: error.message});
+
+    }
 }
 
 exports.eliminarUsuario = async (req, res) => {
