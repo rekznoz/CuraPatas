@@ -14,7 +14,7 @@ const validationSchema = object({
     email: string()
         .required('El campo email es obligatorio')
         .email('El email no es válido'),
-    password: string()
+    secreto: string()
         .required('El campo contraseña es obligatorio')
         .min(6, 'La contraseña debe tener al menos 6 caracteres')
         .max(20, 'La contraseña debe tener como máximo 20 caracteres'),
@@ -25,7 +25,7 @@ const validationSchema = object({
 const usuarioVacio = {
     username: 'brad_vickers',
     email: 'rafa@asd.com',
-    password: 'asdasd',
+    secreto: 'asdasd',
     terminos: false
 }
 
@@ -56,7 +56,12 @@ export default function Login() {
                 alert('Error al registrar el usuario')
             }
         } else {
-            console.log('Login')
+            try {
+                await loguearUsuario(values)
+                alert('Usuario logueado correctamente')
+            } catch (error) {
+                alert('Error al loguear el usuario')
+            }
         }
         resetForm()
     }
@@ -92,11 +97,11 @@ export default function Login() {
 
 
                                 <div className="contenedor-entrada">
-                                    <input type="password" placeholder="Ingrese su contraseña"
-                                           name="password" value={values.password} onBlur={handleBlur}
+                                    <input type="secreto" placeholder="Ingrese su contraseña"
+                                           name="secreto" value={values.secreto} onBlur={handleBlur}
                                            onChange={handleChange}/>
-                                    {touched.password && errors.password ?
-                                        <p className="FormError">{errors.password}</p> : null}
+                                    {touched.secreto && errors.secreto ?
+                                        <p className="FormError">{errors.secreto}</p> : null}
                                 </div>
 
 

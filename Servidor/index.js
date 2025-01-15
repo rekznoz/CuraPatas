@@ -12,18 +12,11 @@ const app = express();
 // Habilitar CORS para todas las solicitudes
 app.use(cors());  // Esto permite peticiones de cualquier origen
 
-// Si deseas configurar CORS de manera más específica, puedes pasarle opciones:
-app.use(cors({
-  origin: 'http://localhost:5173/',  // Asegúrate de poner el puerto donde está tu frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
-  allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
-}));
-
 // Configuración de body-parser
 app.use(bodyParser.json());
 
 // Conexión a MongoDB
-connectDB()
+connectDB().then(r => console.log('Conectado a la base de datos'));
 
 // Rutas
 app.use('/usuario', require('./routes/usuarioRoutes'))

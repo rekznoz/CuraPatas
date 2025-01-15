@@ -4,7 +4,6 @@ const API_URL = "http://localhost:3000";
 
 export const registrarUsuario = async (userData) => {
     try {
-        console.log(userData);
         const response = await axios.post(`${API_URL}/usuario`, userData, {
             headers: {"Content-Type": "application/json"}
         });
@@ -16,9 +15,10 @@ export const registrarUsuario = async (userData) => {
 
 export const loguearUsuario = async (userData) => {
     try {
-        const response = await axios.post(`${API_URL}/users/login`, userData, {
+        console.log(userData);
+        const response = await axios.post(`${API_URL}/usuario/login`, userData, {
             headers: {"Content-Type": "application/json"}
-        });
+        })
         return response.data;
     } catch (error) {
         throw new Error(error.response?.data?.error || "Error durante el login");
