@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
                 element: <Contacto/>,
             },
             {
-                path: "usuario",
+                path: "usuario/:username",
                 element: <PerfilUsuario/>,
             }
         ],
