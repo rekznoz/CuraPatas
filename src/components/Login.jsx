@@ -58,7 +58,7 @@ export default function Login() {
         } else {
             try {
                 await loguearUsuario(values)
-                alert('Usuario logueado correctamente')
+
             } catch (error) {
                 alert('Error al loguear el usuario')
             }
@@ -95,15 +95,13 @@ export default function Login() {
                                     {touched.email && errors.email ? <p className="FormError">{errors.email}</p> : null}
                                 </div>
 
-
                                 <div className="contenedor-entrada">
-                                    <input type="secreto" placeholder="Ingrese su contraseña"
+                                    <input type="password" placeholder="Ingrese su contraseña"
                                            name="secreto" value={values.secreto} onBlur={handleBlur}
                                            onChange={handleChange}/>
                                     {touched.secreto && errors.secreto ?
                                         <p className="FormError">{errors.secreto}</p> : null}
                                 </div>
-
 
                                 <div className="politicas-login">
                                     <input className="input-login" type="checkbox" name="terminos"
