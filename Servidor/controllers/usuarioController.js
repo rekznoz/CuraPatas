@@ -39,13 +39,12 @@ exports.login = async (req, res) => {
 
     try {
         const usuario = await Users.findOne({email});
-        console.log(usuario);
+
         if (!usuario) {
             return res.status(400).json({error: 'El usuario no existe'});
         }
 
-        const passwordValido = await Bycript.compare(secreto, usuario.secreto);
-        if (!passwordValido) {
+        if (secreto !== usuario.secreto) {
             return res.status(400).json({error: 'La contraseña es incorrecta'});
         }
 
