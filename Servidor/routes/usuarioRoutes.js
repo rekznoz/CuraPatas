@@ -11,5 +11,3 @@ router.delete('/', eliminarUsuario);
 
 module.exports = router;
 
-
-
