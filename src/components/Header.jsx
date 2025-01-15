@@ -10,6 +10,8 @@ export default function Header() {
     const [modo, setModo] = useState('claro')
     const {login, user, logout, isAuthenticated} = useContext(AuthContext);
 
+    console.log(user)
+
     const toggleMenu = () => {
         const navMenu = document.getElementById('nav-menu');
         navMenu.classList.toggle('show');
@@ -62,7 +64,11 @@ export default function Header() {
                         <li><Link to="contacto">CONTACTO</Link></li>
                         {
                             isAuthenticated ?
-                                <li><span onClick={logout}>LOGOUT</span></li>
+                                <>
+                                    <li><Link to="contacto">PERFIL</Link></li>
+                                    <li><span onClick={logout}>LOGOUT</span></li>
+                                </>
+
                                 :
                                 <li><span onClick={mostarLogin}>LOGIN</span></li>
 
