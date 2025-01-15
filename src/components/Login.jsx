@@ -58,10 +58,9 @@ export default function Login() {
                 alert('Error al registrar el usuario')
             }
         } else {
-            const success = await login(values);
-            if (success.success) {
+            const respuesta = await login(values);
+            if (respuesta) {
                 alert("Login exitoso");
-                console.log(success);
                 resetForm();
             } else {
                 alert("Credenciales incorrectas");
