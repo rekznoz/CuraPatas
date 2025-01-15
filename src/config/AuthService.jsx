@@ -25,10 +25,8 @@ export const loguearUsuario = async (userData) => {
         });
 
         // Devuelve solo los datos relevantes
-        return {
-            success: true,
-            data: response.data,
-        };
+        return response.data.usuario;
+
     } catch (error) {
         // Manejando errores de axios o del servidor
         if (error.response) {
