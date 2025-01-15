@@ -5,7 +5,7 @@ const { login, crearUsuario, obtenerUsuarios, editarUsuario, eliminarUsuario } =
 router.post('/', crearUsuario);
 router.get('/', obtenerUsuarios);
 router.get('/login', login);
-router.put('/', editarUsuario);
+router.put('/:id', editarUsuario);
 router.delete('/', eliminarUsuario);
 
 
