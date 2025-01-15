@@ -42,3 +42,13 @@ export const loguearUsuario = async (userData) => {
     }
 };
 
+export const editarUsuario = async (id, userData) => {
+    try {
+        const response = await axios.put(`${API_URL}/usuario/${id}`, userData, {
+            headers: {"Content-Type": "application/json"},
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.error || "Error durante la edición del usuario");
+    }
+}
