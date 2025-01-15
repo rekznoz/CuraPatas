@@ -101,7 +101,7 @@ exports.editarUsuario = async (req, res) => {
 
     try {
         // Buscar y actualizar el usuario por ID
-        const usuarioActualizado = await Users.findByIdAndUpdate(id, req.body, {new: true});
+        const usuarioActualizado = await Users.findByIdAndUpdate(id, req.body);
         res.json({message: "Usuario actualizado con éxito", usuarioActualizado});
     } catch (error) {
         res.status(500).json({error: 'Error al editar el usuario', details: error.message});
