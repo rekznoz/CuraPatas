@@ -22,7 +22,7 @@ export default function UsuarioProvider({children}) {
             setCargando(false)
         })
 
-        return () => unsubscribe() // Limpia el suscriptor
+        return () => unsubscribe()
     }, [])
 
     if (!cargando) {

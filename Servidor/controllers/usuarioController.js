@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Users = require('../models/Users');
 const Bycript = require('bcryptjs')
 
-
 exports.crearUsuario = async (req, res) => {
     const {username, email, contraseña} = req.body;
 
@@ -32,6 +31,27 @@ exports.crearUsuario = async (req, res) => {
 exports.login = async (req, res) => {
     const {username, animales, email, rol} = req.body;
     // Implementar validación aquí
+
+    if (!username || !email || !contraseña) {
+        return res.status(400).json({error: 'Todos los campos son requeridos'});
+    }
+
+    try {
+        const existeUsuario = await Users.findOne({username});
+        if (!existeUsuario) {
+            return res.status(400).json({error: 'Usuario no encontrado'});
+        }
+
+        const contraseñaValida = await Bycript.compare(contraseña, existeUsuario.contraseña);
+        if (!contraseñaValida) {
+            return res.status(400).json({error: 'Contraseña incorrecta'});
+        }
+
+        res.json({message: 'Inicio de sesión exitoso', existeUsuario});
+
+    } catch (error) {
+        res.status(500).json({error: 'Error al iniciar sesión', details: error.message});
+    }
 
 }
 

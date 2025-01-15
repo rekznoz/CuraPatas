@@ -1,4 +1,5 @@
 import {useContext, useState} from "react"
+import {registrarUsuario, loguearUsuario} from "../config/AuthService"
 
 // Recoge los datos del formulario
 import {Formik} from 'formik'
@@ -22,6 +23,7 @@ const validationSchema = object({
 })
 
 const usuarioVacio = {
+    username: '',
     email: '',
     password: '',
     terminos: false
@@ -47,7 +49,13 @@ export default function Login() {
 
     const onSubmit = async (values, {resetForm}) => {
         if (registro) {
-            console.log('Registro')
+            try {
+
+                await registrarUsuario(values)
+                alert('Usuario registrado correctamente')
+            } catch (error) {
+                alert('Error al registrar el usuario')
+            }
         } else {
             console.log('Login')
         }
@@ -64,6 +72,17 @@ export default function Login() {
                                 <h2>{
                                     registro ? 'Registro' : 'Login'
                                 }</h2>
+
+                                {registro ?
+                                    <div className="contenedor-entrada">
+                                        <input type="username" placeholder="Ingrese su Usuario"
+                                               name="username"
+                                               value={values.username} onBlur={handleBlur} onChange={handleChange}/>
+                                        {touched.username && errors.username ?
+                                            <p className="FormError">{errors.username}</p> : null}
+                                    </div>
+                                    : <></>
+                                }
 
                                 <div className="contenedor-entrada">
                                     <input type="email" placeholder="Ingrese su Email"
@@ -101,7 +120,8 @@ export default function Login() {
                                                 <span>¿No tienes cuenta?</span>
                                                 <p className="click-registro" onClick={mostrarRegistro}>Registrate</p>
                                             </div>
-                                            <button className="botonLogin" type="submit" disabled={isSubmitting}>Login</button>
+                                            <button className="botonLogin" type="submit" disabled={isSubmitting}>Login
+                                            </button>
                                             <button className="botonCerrarLogin" onClick={ocultarLogin}>Cerrar</button>
                                         </>
                                     }
