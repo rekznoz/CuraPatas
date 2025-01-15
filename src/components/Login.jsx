@@ -1,5 +1,6 @@
 import {useContext, useState} from "react"
 import {registrarUsuario, loguearUsuario} from "../config/AuthService"
+import {AuthContext} from "../context/AuthContext.jsx";
 
 // Recoge los datos del formulario
 import {Formik} from 'formik'
@@ -32,6 +33,7 @@ const usuarioVacio = {
 export default function Login() {
 
     const [registro, setRegistro] = useState(false)
+    const {login, user, logout, isAuthenticated} = useContext(AuthContext);
 
     const ocultarLogin = () => {
         // Ocultar el modal de Login
@@ -56,14 +58,20 @@ export default function Login() {
                 alert('Error al registrar el usuario')
             }
         } else {
-            try {
-                await loguearUsuario(values)
-
-            } catch (error) {
-                alert('Error al loguear el usuario')
+            const success = await login(values);
+            if (success.success) {
+                alert("Login exitoso");
+                console.log(success);
+                resetForm();
+            } else {
+                alert("Credenciales incorrectas");
             }
         }
         resetForm()
+    }
+
+    if (isAuthenticated) {
+        return <></>
     }
 
     return (
