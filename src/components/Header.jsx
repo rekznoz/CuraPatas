@@ -10,8 +10,6 @@ export default function Header() {
     const [modo, setModo] = useState('claro')
     const {login, user, logout, isAuthenticated} = useContext(AuthContext);
 
-    console.log(user)
-
     const toggleMenu = () => {
         const navMenu = document.getElementById('nav-menu');
         navMenu.classList.toggle('show');
