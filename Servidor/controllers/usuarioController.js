@@ -15,16 +15,20 @@ exports.crearUsuario = async (req, res) => {
         if (existeEmail) {
             return res.status(400).json({error: "El email ya está registrado"});
         }
+
         // Verificar si el usuario ya esta registrado
         const existeUsuario = await Users.findOne({username});
         if (existeUsuario) {
             return res.status(400).json({error: "El usuario ya está registrado"});
         }
+
         const user = new Users({username, email, secreto});
         await user.save();
         res.json({message: "Usuario registrado con éxito", user});
+
     } catch (error) {
         res.status(500).json({error: 'Error al agregar el usuario', details: error.message});
+
     }
 };
 
@@ -73,6 +77,22 @@ exports.obtenerUsuarios = async (req, res) => {
         res.status(500).json({error: 'Error al obtener los animales', details: error.message});
     }
 };
+
+export const obtenerUsuario = async (req, res) => {
+    const {username} = req.body;
+    // Validación de campos
+    if (!username) {
+        return res.status(400).json({error: 'El nombre es requerido para buscar un animal'});
+    }
+
+    try {
+        // Buscar el usuario por nombre
+        const nombreUsuario = await Users.find({username});
+        res.json(nombreUsuario);
+    } catch (error) {
+        res.status(500).json({error: 'Error al buscar el animal', details: error.message});
+    }
+}
 
 exports.editarUsuario = async (req, res) => {
     // Implementar funcionalidad para editar usuarios
