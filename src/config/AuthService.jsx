@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const API_URL = "http://localhost:5173";
+const API_URL = "http://localhost:3000";
 
 export const registrarUsuario = async (userData) => {
     try {
         console.log(userData);
-        const response = await axios.post(`${API_URL}/api/usuario`, userData, {
+        const response = await axios.post(`${API_URL}/usuario`, userData, {
             headers: {"Content-Type": "application/json"}
         });
         return response.data;
