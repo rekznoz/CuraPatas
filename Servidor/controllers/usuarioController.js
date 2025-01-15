@@ -95,6 +95,11 @@ exports.obtenerUsuario = async (req, res) => {
 exports.editarUsuario = async (req, res) => {
     const {id} = req.params;
 
+    console.log(req.params);
+    console.log(req.body);
+
+    console.log(id);
+
     if (!id) {
         return res.status(400).json({error: 'El ID es requerido para editar un usuario'});
     }
@@ -102,6 +107,7 @@ exports.editarUsuario = async (req, res) => {
     try {
         // Buscar y actualizar el usuario por ID
         const usuarioActualizado = await Users.findByIdAndUpdate(id, req.body);
+        console.log(usuarioActualizado);
         res.json({message: "Usuario actualizado con éxito", usuarioActualizado});
     } catch (error) {
         res.status(500).json({error: 'Error al editar el usuario', details: error.message});
