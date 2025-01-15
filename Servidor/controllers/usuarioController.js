@@ -13,11 +13,16 @@ exports.crearUsuario = async (req, res) => {
     }
     try {
         // Verificar si el email ya está registrado
-        const existingUser = await User.findOne({email});
-        if (existingUser) {
-            return res.status(400).json({error: "El email ya está registrado"});
+        const existeEmail = await User.findOne({email});
+        if (existeEmail) {
+            return res.status(400).json({ error: "El email ya está registrado" });
         }
-        const user = new Users({username, email, rol: "Usuario", fechaRegistro: currentDate.toLocaleDateString()});
+        // Verificar si el usuario ya esta registrado
+         const existeUsuario = await User.findOne({username});
+         if (existeUsuario) {
+             return res.status(400).json({ error: "El usuario ya está registrado" });
+         }
+         const user = new Users({ username, email, rol:"Usuario", fechaRegistro: currentDate.toLocaleDateString()});
         await user.save();
         res.json({message: "Usuario registrado con éxito", user});
     } catch (error) {
@@ -70,4 +75,5 @@ exports.eliminarUsuario = async (req, res) => {
     } catch (error) {
         res.status(500).json({error: 'Error al borrar el animal', details: error.message});
     }
-}
+};
+
