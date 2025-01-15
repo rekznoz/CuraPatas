@@ -1,0 +1,221 @@
+
+/* Estilos del encabezado del perfil */
+
+.encabezado-perfil {
+    background: var(--fondo-principal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+}
+
+.foto-perfil {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 5px solid #007bff;
+}
+
+.nombre-perfil {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--color-texto-principal);
+}
+
+.rol-perfil {
+    padding: 5px 10px;
+    font-size: 18px;
+    color: var(--color-texto-principal);
+}
+
+.boton-editar-usuario-perfil {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.boton-editar-usuario-perfil:hover {
+    background: #0056b3;
+}
+
+/* Estilos de la información del perfil */
+
+.informacion-perfil-usuario {
+    background-color: var(--fondo-principal);
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    gap: 20px;
+}
+
+.bloque-informacion {
+    flex: 1;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bloque-informacion h4 {
+    font-size: 16px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.bloque-informacion p {
+    margin: 0;
+    font-size: 14px;
+}
+
+@media (max-width: 999px) {
+    .informacion-perfil-usuario {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+/* Estilos de la sección de mascotas */
+
+.seccion-mascotas-perfil {
+    background: var(--fondo-principal);
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+
+}
+
+.encabezado-seccion-mascotas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.encabezado-seccion-mascotas h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color-texto-principal);
+}
+
+.encabezado-seccion-mascotas button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.encabezado-seccion-mascotas button:hover {
+    background: #45a049;
+}
+
+.lista-mascotas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.carta-mascota {
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+    width: calc(50% - 15px);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.foto-mascota {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #ddd;
+    border: 2px solid #007bff;
+}
+
+.detalles-mascota {
+    flex-grow: 1;
+}
+
+.nombre-mascota {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.informacion-mascota {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+@media (max-width: 999px) {
+    .encabezado-seccion-mascotas {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .carta-mascota {
+        width: 100%;
+    }
+}
+
+.formulario-agregar-mascota {
+    background: var(--fondo-principal);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    justify-content: center;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+.formulario-agregar-mascota form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formulario-agregar-mascota h4 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color-texto-principal);
+}
+
+.formulario-agregar-mascota form input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.formulario-agregar-mascota form button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.formulario-agregar-mascota form button:hover {
+    background: #0056b3;
+}

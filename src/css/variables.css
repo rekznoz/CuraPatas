@@ -1,8 +1,14 @@
 :root{
-    /* Paleta de olores */
-    --color-fondo: #fff;
-    --color-letra: #333;
-    --color-primario: #3fa8ab;
+  
+    /* Colores */
+    --fondo-principal: #f0f0f0;
+    --color-texto-principal: #00000;
+    --color-texto-principal-politicas: #777777;
+    --color-texto-principal-registro: #777777;
+
+    /* Footer */
+    --color-footer-texto: #CCCCCC;
+    --color-footer-enlaces: #0096ff;
 
     /* Tamaños */
     --xl: 20px;
@@ -20,7 +26,9 @@
 
 }
 
-.tema-oscuro{
-    --color-fondo: #333;
-    --color-letra: #fff;
+.modo-oscuro{
+    --fondo-principal: #333333;
+    --color-texto-principal: #ffffff;
+    --color-texto-principal-politicas: #cccccc;
+    --color-texto-principal-registro: #cccccc;
 }

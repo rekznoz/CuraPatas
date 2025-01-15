@@ -1,6 +1,6 @@
 import { Link, useRouteError } from "react-router-dom"; // Importación de Link y useRouteError para manejo de rutas
 
-const NotFound = () => {
+const Error = () => {
   const error = useRouteError(); // Obtiene el error de la ruta actual
 
   return (
@@ -33,4 +33,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default Error;
