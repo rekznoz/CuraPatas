@@ -78,7 +78,7 @@ exports.obtenerUsuarios = async (req, res) => {
     }
 };
 
-export const obtenerUsuario = async (req, res) => {
+exports.obtenerUsuario = async (req, res) => {
     const {username} = req.body;
     // Validación de campos
     if (!username) {
