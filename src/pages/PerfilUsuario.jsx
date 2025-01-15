@@ -8,6 +8,7 @@ import {bool, object, string} from 'yup'
 
 import "../css/perfilesusuario.css";
 import {AuthContext} from "../context/AuthContext.jsx";
+import {editarUsuario} from "../config/AuthService.jsx";
 
 const validationSchema = object({
     foto: string()
@@ -36,6 +37,7 @@ const perfilVacio = {
     foto: '',
     nombre: '',
     email: '',
+    rol: '',
     ubicacion: '',
     telefono: '',
     descripcion: ''
@@ -65,7 +67,9 @@ export default function PerfilUsuario() {
     const [editar, setEditar] = useState(false)
     const {login, user, logout, isAuthenticated} = useContext(AuthContext);
     const [usuario, setUsuario] = useState(perfilVacio)
-    const {nombre, username, email, secreto, animales, rol, descripcion, ubicacion, telefono, fechaRegistro} = user
+
+    const {_id, username, secreto, animales} = user
+    const { nombre, email, rol, descripcion, ubicacion, telefono, fechaRegistro } = usuario
 
     const mostrarEditar = () => {
         if (editar) {
@@ -78,18 +82,25 @@ export default function PerfilUsuario() {
     useEffect(() => {
         setUsuario({
             foto: '',
-            nombre: nombre,
-            email: email,
-            ubicacion: ubicacion,
-            telefono: telefono,
-            descripcion: descripcion
+            nombre: user.nombre,
+            email: user.email,
+            rol: user.rol,
+            ubicacion: user.ubicacion,
+            telefono: user.telefono,
+            descripcion: user.descripcion
         })
     }, []);
 
     const handleSave = (values) => {
-        console.log(values)
-        setUsuario(values)
-        setEditar(false)
+        editarUsuario(_id, values)
+            .then(response => {
+                console.log(response)
+                mostrarEditar()
+                setUsuario(values)
+            })
+            .catch(error => {
+                console.error(error)
+            })
     }
 
     return (<>
@@ -110,12 +121,13 @@ export default function PerfilUsuario() {
                                 initialValues={usuario}
                                 validationSchema={validationSchema}
                                 onSubmit={handleSave}
-                                >
-                                {({values, errors, touched, handleChange, handleBlur, handleSubmit}) => (
-                                    <form onSubmit={handleSubmit}>
+                            >
+                                {({values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting}) => (
+                                    <>
                                         <div className="bloque-informacion">
                                             <h4>Foto</h4>
-                                            <input type="text" name="foto" placeholder="URL de la foto" value={values.foto}
+                                            <input type="text" name="foto" placeholder="URL de la foto"
+                                                   value={values.foto}
                                                    onChange={handleChange} onBlur={handleBlur}/>
                                             {errors.foto && touched.foto && <div>{errors.foto}</div>}
                                         </div>
@@ -134,23 +146,28 @@ export default function PerfilUsuario() {
                                         <div className="bloque-informacion">
                                             <h4>Ubicación</h4>
                                             <input type="text" name="ubicacion" placeholder="Ubicación"
-                                                   value={values.ubicacion} onChange={handleChange} onBlur={handleBlur}/>
+                                                   value={values.ubicacion} onChange={handleChange}
+                                                   onBlur={handleBlur}/>
                                             {errors.ubicacion && touched.ubicacion && <div>{errors.ubicacion}</div>}
                                         </div>
                                         <div className="bloque-informacion">
                                             <h4>Teléfono</h4>
-                                            <input type="text" name="telefono" placeholder="Teléfono" value={values.telefono}
+                                            <input type="text" name="telefono" placeholder="Teléfono"
+                                                   value={values.telefono}
                                                    onChange={handleChange} onBlur={handleBlur}/>
                                             {errors.telefono && touched.telefono && <div>{errors.telefono}</div>}
                                         </div>
                                         <div className="bloque-informacion">
                                             <h4>Descripción</h4>
-                                            <textarea name="descripcion" placeholder="Descripción" value={values.descripcion}
+                                            <textarea name="descripcion" placeholder="Descripción"
+                                                      value={values.descripcion}
                                                       onChange={handleChange} onBlur={handleBlur}/>
-                                            {errors.descripcion && touched.descripcion && <div>{errors.descripcion}</div>}
+                                            {errors.descripcion && touched.descripcion &&
+                                                <div>{errors.descripcion}</div>}
                                         </div>
-                                        <button type="submit">Guardar</button>
-                                    </form>
+                                        <button onClick={handleSubmit} type="submit" disabled={isSubmitting}>Guardar
+                                        </button>
+                                    </>
                                 )}
                             </Formik>
                             :
