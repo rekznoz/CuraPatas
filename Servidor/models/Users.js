@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     email: { type: String, require: true },
     secreto: {type: String, require: true },
+    nombre: { type: String, require: false, default: "" },
     animales: { type: Array, required: false, default: [] },
     rol: { type: String, require: true, default: "usuario" },
     descripcion: { type: String, require: false, default: "" },
