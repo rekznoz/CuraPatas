@@ -2,11 +2,13 @@ import logo from '../assets/logo.png';
 import {Link} from "react-router-dom";
 import claro from '../assets/navbar/claro.png';
 import oscuro from '../assets/navbar/oscuro.png';
-import {useState} from "react";
+import {useContext, useState} from "react";
+import {AuthContext} from "../context/AuthContext.jsx";
 
 export default function Header() {
 
     const [modo, setModo] = useState('claro')
+    const {login, user, logout, isAuthenticated} = useContext(AuthContext);
 
     const toggleMenu = () => {
         const navMenu = document.getElementById('nav-menu');
@@ -58,7 +60,17 @@ export default function Header() {
                         <li><Link to="/">SERVICIOS</Link></li>
                         <li><Link to="/">TIENDA</Link></li>
                         <li><Link to="contacto">CONTACTO</Link></li>
-                        <li><span onClick={mostarLogin}>LOGIN</span></li>
+                        {
+                            isAuthenticated ?
+                                <>
+                                    <li><Link to={`/usuario/${user.username}`}>PERFIL</Link></li>
+                                    <li><span onClick={logout}>LOGOUT</span></li>
+                                </>
+
+                                :
+                                <li><span onClick={mostarLogin}>LOGIN</span></li>
+
+                        }
                     </ul>
                 </nav>
             </div>

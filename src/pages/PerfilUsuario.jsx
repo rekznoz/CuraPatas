@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useContext, useEffect, useState} from "react";
 // Recoge los datos del formulario
 import {Formik} from 'formik'
 // https://formik.org/docs/overview
@@ -7,6 +7,8 @@ import {Formik} from 'formik'
 import {bool, object, string} from 'yup'
 
 import "../css/perfilesusuario.css";
+import {AuthContext} from "../context/AuthContext.jsx";
+import {editarUsuario} from "../config/AuthService.jsx";
 
 const validationSchema = object({
     foto: string()
@@ -32,16 +34,42 @@ const validationSchema = object({
 })
 
 const perfilVacio = {
+    foto: '',
     nombre: '',
     email: '',
+    rol: '',
     ubicacion: '',
     telefono: '',
     descripcion: ''
 }
 
+/*
+
+{
+    "nombre": "",
+    "_id": "6787c02a5bb0f740fb2fb912",
+    "username": "brad_vickers",
+    "email": "rafa@asd.com",
+    "secreto": "asdasd",
+    "animales": [],
+    "rol": "usuario",
+    "descripcion": "",
+    "ubicacion": "",
+    "telefono": "",
+    "fechaRegistro": "15/1/2025",
+    "__v": 0
+}
+
+ */
+
 export default function PerfilUsuario() {
 
     const [editar, setEditar] = useState(false)
+    const {login, user, logout, isAuthenticated} = useContext(AuthContext);
+    const [usuario, setUsuario] = useState(perfilVacio)
+
+    const {_id, username, secreto, animales} = user
+    const { nombre, email, rol, descripcion, ubicacion, telefono, fechaRegistro } = usuario
 
     const mostrarEditar = () => {
         if (editar) {
@@ -51,40 +79,121 @@ export default function PerfilUsuario() {
         }
     }
 
+    useEffect(() => {
+        setUsuario({
+            foto: '',
+            nombre: user.nombre,
+            email: user.email,
+            rol: user.rol,
+            ubicacion: user.ubicacion,
+            telefono: user.telefono,
+            descripcion: user.descripcion
+        })
+    }, []);
+
+    const handleSave = (values) => {
+        editarUsuario(_id, values)
+            .then(response => {
+                console.log(response)
+                mostrarEditar()
+                setUsuario(values)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }
+
     return (<>
             <div className="area1">
                 <div className="encabezado-perfil">
                     <img className="foto-perfil" src="https://mighty.tools/mockmind-api/content/human/122.jpg"
                          alt="profile"/>
-                    <div className="nombre-perfil">Rafita</div>
-                    <div className="rol-perfil">Admin</div>
+                    <div className="nombre-perfil">{nombre}</div>
+                    <div className="rol-perfil">{rol}</div>
                     <button className="boton-editar-usuario-perfil" onClick={mostrarEditar}>Editar Perfil</button>
                 </div>
             </div>
             <div className="area2">
                 <div className="informacion-perfil-usuario">
-                    { /*
-                    <div className="bloque-informacion">
-                        <h4>Descripción</h4>
-                        <p>Lalalalalallallalaalalala</p>
-                    </div>
-                    <div className="bloque-informacion">
-                        <h4>Ubicación</h4>
-                        <p>Ciudad, País</p>
-                    </div>
-                    <div className="bloque-informacion">
-                        <h4>Teléfono</h4>
-                        <p>+34 000 00 00 0 </p>
-                    </div>
-                    <div className="bloque-informacion">
-                        <h4>Email</h4>
-                        <p>rafita@rafi.com</p>
-                    </div>
-                    <div className="bloque-informacion">
-                        <h4>Fecha de Registro</h4>
-                        <p>12/01/2025</p>
-                    </div>
-                    */}
+                    {
+                        editar ?
+                            <Formik
+                                initialValues={usuario}
+                                validationSchema={validationSchema}
+                                onSubmit={handleSave}
+                            >
+                                {({values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting}) => (
+                                    <>
+                                        <div className="bloque-informacion">
+                                            <h4>Foto</h4>
+                                            <input type="text" name="foto" placeholder="URL de la foto"
+                                                   value={values.foto}
+                                                   onChange={handleChange} onBlur={handleBlur}/>
+                                            {errors.foto && touched.foto && <div>{errors.foto}</div>}
+                                        </div>
+                                        <div className="bloque-informacion">
+                                            <h4>Nombre</h4>
+                                            <input type="text" name="nombre" placeholder="Nombre" value={values.nombre}
+                                                   onChange={handleChange} onBlur={handleBlur}/>
+                                            {errors.nombre && touched.nombre && <div>{errors.nombre}</div>}
+                                        </div>
+                                        <div className="bloque-informacion">
+                                            <h4>Email</h4>
+                                            <input type="text" name="email" placeholder="Email" value={values.email}
+                                                   onChange={handleChange} onBlur={handleBlur}/>
+                                            {errors.email && touched.email && <div>{errors.email}</div>}
+                                        </div>
+                                        <div className="bloque-informacion">
+                                            <h4>Ubicación</h4>
+                                            <input type="text" name="ubicacion" placeholder="Ubicación"
+                                                   value={values.ubicacion} onChange={handleChange}
+                                                   onBlur={handleBlur}/>
+                                            {errors.ubicacion && touched.ubicacion && <div>{errors.ubicacion}</div>}
+                                        </div>
+                                        <div className="bloque-informacion">
+                                            <h4>Teléfono</h4>
+                                            <input type="text" name="telefono" placeholder="Teléfono"
+                                                   value={values.telefono}
+                                                   onChange={handleChange} onBlur={handleBlur}/>
+                                            {errors.telefono && touched.telefono && <div>{errors.telefono}</div>}
+                                        </div>
+                                        <div className="bloque-informacion">
+                                            <h4>Descripción</h4>
+                                            <textarea name="descripcion" placeholder="Descripción"
+                                                      value={values.descripcion}
+                                                      onChange={handleChange} onBlur={handleBlur}/>
+                                            {errors.descripcion && touched.descripcion &&
+                                                <div>{errors.descripcion}</div>}
+                                        </div>
+                                        <button onClick={handleSubmit} type="submit" disabled={isSubmitting}>Guardar
+                                        </button>
+                                    </>
+                                )}
+                            </Formik>
+                            :
+                            <>
+                                <div className="bloque-informacion">
+                                    <h4>Descripción</h4>
+                                    <p>{descripcion}</p>
+                                </div>
+                                <div className="bloque-informacion">
+                                    <h4>Ubicación</h4>
+                                    <p>{ubicacion}</p>
+                                </div>
+                                <div className="bloque-informacion">
+                                    <h4>Teléfono</h4>
+                                    <p>{telefono}</p>
+                                </div>
+                                <div className="bloque-informacion">
+                                    <h4>Email</h4>
+                                    <p>{email}</p>
+                                </div>
+                                <div className="bloque-informacion">
+                                    <h4>Fecha de Registro</h4>
+                                    <p>{fechaRegistro}</p>
+                                </div>
+                            </>
+                    }
 
                 </div>
             </div>

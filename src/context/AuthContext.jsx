@@ -8,11 +8,9 @@ const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null); // Estado del usuario autenticado
 
     const login = async (credentials) => {
-        console.log(credentials);
         try {
             // Supongamos que "loguearUsuario" es una función que valida al usuario en el backend
             const usuario = await loguearUsuario(credentials);
-            console.log(usuario);
             setUser(usuario); // Guardar la información del usuario
             return true;
         } catch (error) {
