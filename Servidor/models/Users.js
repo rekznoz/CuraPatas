@@ -1,19 +1,22 @@
-const mongoose = require('mongoose');
+import { Schema, model } from 'mongoose';
 
-let currentDate = new Date();
+const currentDate = new Date(); // Definición correcta de currentDate
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
     username: { type: String, required: true, unique: true },
-    email: { type: String, require: true },
-    secreto: {type: String, require: true },
-    nombre: { type: String, require: false, default: "" },
-    animales: { type: Array, required: false, default: [] },
-    rol: { type: String, require: true, default: "usuario" },
-    descripcion: { type: String, require: false, default: "" },
-    ubicacion: { type: String, require: false, default: "" },
-    telefono: { type: String, require: false, default: "" },
-    fechaRegistro: { type: String, require: true, default: currentDate.toLocaleDateString() }
-     
+    email: { type: String, required: true },
+    secreto: { type: String, required: true },
+    nombre: { type: String, required: false, default: "" },
+    animales: { type: [String], required: false, default: [] }, // Definir tipo explícito para el array
+    rol: { type: String, required: true, default: "usuario" },
+    descripcion: { type: String, required: false, default: "" },
+    ubicacion: { type: String, required: false, default: "" },
+    telefono: { type: String, required: false, default: "" },
+    fechaRegistro: { 
+        type: String, 
+        required: true, 
+        default: () => currentDate.toLocaleDateString() // Usar una función para valores dinámicos por documento
+    }
 });
 
-module.exports = mongoose.model('Users', userSchema);
+export default model('Users', userSchema);

@@ -1,14 +1,15 @@
-const mongoose = require('mongoose');
-const Users = require('../models/Users');
-const Bycript = require('bcryptjs')
+import mongoose from 'mongoose';
+import Users from '../models/Users.js';
+import bcrypt from 'bcryptjs';  // Corregir el nombre del paquete bcrypt
 
-exports.crearUsuario = async (req, res) => {
+export const crearUsuario = async (req, res) => {
     const {username, email, secreto} = req.body;
 
     // Validación de campos
     if (!username || !email || !secreto) {
         return res.status(400).json({error: 'Todos los campos son requeridos'});
     }
+
     try {
         // Verificar si el email ya está registrado
         const existeEmail = await Users.findOne({email});
@@ -16,23 +17,25 @@ exports.crearUsuario = async (req, res) => {
             return res.status(400).json({error: "El email ya está registrado"});
         }
 
-        // Verificar si el usuario ya esta registrado
+        // Verificar si el usuario ya está registrado
         const existeUsuario = await Users.findOne({username});
         if (existeUsuario) {
             return res.status(400).json({error: "El usuario ya está registrado"});
         }
 
-        const user = new Users({username, email, secreto});
+        // Cifrar la contraseña antes de guardarla
+        const hashedPassword = await bcrypt.hash(secreto, 10);
+
+        const user = new Users({username, email, secreto: hashedPassword});
         await user.save();
         res.json({message: "Usuario registrado con éxito", user});
 
     } catch (error) {
         res.status(500).json({error: 'Error al agregar el usuario', details: error.message});
-
     }
 };
 
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
     const {email, secreto} = req.body;
 
     if (!email || !secreto) {
@@ -46,7 +49,9 @@ exports.login = async (req, res) => {
             return res.status(400).json({error: 'El usuario no existe'});
         }
 
-        if (secreto !== usuario.secreto) {
+        // Comparar la contraseña ingresada con la almacenada en la base de datos
+        const esValida = await bcrypt.compare(secreto, usuario.secreto);
+        if (!esValida) {
             return res.status(400).json({error: 'La contraseña es incorrecta'});
         }
 
@@ -54,11 +59,10 @@ exports.login = async (req, res) => {
 
     } catch (error) {
         res.status(500).json({error: 'Error al loguear el usuario', details: error.message});
-
     }
-}
+};
 
-exports.obtenerUsuarios = async (req, res) => {
+export const obtenerUsuarios = async (req, res) => {
     try {
         const {page = 1, limit = 99} = req.query;
 
@@ -72,15 +76,15 @@ exports.obtenerUsuarios = async (req, res) => {
 
         res.json(usuarios);
     } catch (error) {
-        res.status(500).json({error: 'Error al obtener los animales', details: error.message});
+        res.status(500).json({error: 'Error al obtener los usuarios', details: error.message});
     }
 };
 
-exports.obtenerUsuario = async (req, res) => {
+export const obtenerUsuario = async (req, res) => {
     const {username} = req.params;
 
     if (!username) {
-        return res.status(400).json({error: 'El nombre es requerido para buscar un animal'});
+        return res.status(400).json({error: 'El nombre de usuario es requerido para buscar un usuario'});
     }
 
     try {
@@ -88,17 +92,12 @@ exports.obtenerUsuario = async (req, res) => {
         const nombreUsuario = await Users.find({username});
         res.json(nombreUsuario);
     } catch (error) {
-        res.status(500).json({error: 'Error al buscar el animal', details: error.message});
+        res.status(500).json({error: 'Error al buscar el usuario', details: error.message});
     }
-}
+};
 
-exports.editarUsuario = async (req, res) => {
+export const editarUsuario = async (req, res) => {
     const {id} = req.params;
-
-    console.log(req.params);
-    console.log(req.body);
-
-    console.log(id);
 
     if (!id) {
         return res.status(400).json({error: 'El ID es requerido para editar un usuario'});
@@ -106,30 +105,32 @@ exports.editarUsuario = async (req, res) => {
 
     try {
         // Buscar y actualizar el usuario por ID
-        const usuarioActualizado = await Users.findByIdAndUpdate(id, req.body);
-        console.log(usuarioActualizado);
+        const usuarioActualizado = await Users.findByIdAndUpdate(id, req.body, {new: true});
         res.json({message: "Usuario actualizado con éxito", usuarioActualizado});
     } catch (error) {
         res.status(500).json({error: 'Error al editar el usuario', details: error.message});
-
     }
-}
+};
 
-exports.eliminarUsuario = async (req, res) => {
-    const usuario = {username} = req.body;
-    // Validación de campos
+export const eliminarUsuario = async (req, res) => {
+    const {username} = req.body;  // Corregir la asignación
+
     if (!username) {
-        return res.status(400).json({error: 'El nombre es requerido para eliminar un animal'});
+        return res.status(400).json({error: 'El nombre de usuario es requerido para eliminar un usuario'});
     }
 
     try {
         // Buscar y eliminar el usuario por nombre
-        const nombreUsuario = await Users.find(usuario);
-        const {_id} = nombreUsuario[0]
-        const UsuarioBorrado = await Users.findByIdAndDelete({_id});
+        const nombreUsuario = await Users.find({username});
+        if (!nombreUsuario.length) {
+            return res.status(400).json({error: 'El usuario no existe'});
+        }
+        
+        const {_id} = nombreUsuario[0];
+        const UsuarioBorrado = await Users.findByIdAndDelete(_id);
 
         res.json({message: "Usuario borrado con éxito", UsuarioBorrado});
     } catch (error) {
-        res.status(500).json({error: 'Error al borrar el animal', details: error.message});
+        res.status(500).json({error: 'Error al borrar el usuario', details: error.message});
     }
 };
