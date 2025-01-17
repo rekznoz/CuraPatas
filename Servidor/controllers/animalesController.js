@@ -16,3 +16,21 @@ export const createAnimal = async (req, res) => {
         res.status(500).json({ error: 'Error al agregar el animal', details: error.message });
     }
 }
+
+export const obtenerAnimales = async (req, res) => {
+    try {
+        const { page = 1, limit = 10 } = req.query;
+
+        // Convertir valores de paginación a números
+        const pageNumber = Math.max(1, parseInt(page, 10));
+        const limitNumber = Math.max(1, parseInt(limit, 10));
+
+        const animales = await Animales.find()
+            .skip((pageNumber - 1) * limitNumber)
+            .limit(limitNumber);
+
+        res.json(animales);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener los animales', details: error.message });
+    }
+};
