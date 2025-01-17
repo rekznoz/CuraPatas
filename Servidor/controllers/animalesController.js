@@ -1,6 +1,5 @@
-import Animales from '../models/Animales.js'; // Suponiendo que el modelo está en models/Animals.js
-
-export async function createAnimal(req, res) {
+import Animales from '../models/Animales.js'; 
+export const createAnimal = async (req, res) => {
     const { nombre, especie, raza, edad, estadoSalud, duenio, fechaRegistro } = req.body;
 
     // Validación de campos
