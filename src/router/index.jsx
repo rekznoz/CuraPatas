@@ -5,6 +5,7 @@ import Inicio from "../pages/Inicio.jsx";
 import Contacto from "../pages/Contacto.jsx";
 import PerfilUsuario from "../pages/PerfilUsuario.jsx";
 import Mascotas from "../pages/Mascotas.jsx";
+import Mascota from "../pages/Mascota.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
             {
                 path: "mascotas",
                 element: <Mascotas/>,
+            },
+            {
+                path: "mascota/:id",
+                element: <Mascota/>,
             }
         ],
     },
