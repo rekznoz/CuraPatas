@@ -15,10 +15,10 @@ const router = Router();
 router.post('/', crearUsuario);
 
 // Obtener todos los usuarios
-router.get('/', obtenerUsuarios);
+// router.get('/', obtenerUsuarios);
 
 // Obtener un usuario por username
-router.get('/:username', obtenerUsuario);
+router.get('/:nombreUsuario', obtenerUsuario);
 
 // Iniciar sesión
 router.post('/login', inicioSesion);

@@ -4,6 +4,6 @@ import { crearAnimal, obtenerAnimales } from '../controllers/animalesController.
 
 router.post('/', crearAnimal);
 router.get('/', obtenerAnimales);
-// router.get('/:nombre', obtenerAnimalesPorNombre);
+// router.get('/', obtenerAnimalesPorNombre);
 
 export default router;

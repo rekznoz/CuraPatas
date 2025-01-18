@@ -104,6 +104,7 @@ export const obtenerUsuarios = async (req, res) => {
 
 export const obtenerUsuario = async (req, res) => {
   const { nombreUsuario } = req.params;
+  console.log(nombreUsuario)
 
   if (!nombreUsuario) {
     return res.status(400).json({
@@ -113,8 +114,8 @@ export const obtenerUsuario = async (req, res) => {
 
   try {
     // Buscar el usuario por nombre
-    const nombreUsuario = await Usuarios.find({ nombreUsuario });
-    res.json(nombreUsuario);
+    const usuario = await Usuarios.find({ nombreUsuario });
+    res.json(usuario);
   } catch (error) {
     res
       .status(500)
