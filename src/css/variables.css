@@ -2,9 +2,19 @@
   
     /* Colores */
     --fondo-principal: #f0f0f0;
-    --color-texto-principal: #00000;
+    --color-texto-principal: #000000;
     --color-texto-principal-politicas: #777777;
     --color-texto-principal-registro: #777777;
+    --color-texto-principal-azul: #0096ff;
+
+
+    /* Lista Mascotas */
+    --color-fondo-mascotas: #ffffff;
+    --color-texto-mascotas: #000000;
+
+    /* Paginacion */
+    --color-paginacion-fondo: #f0f0f0;
+    --color-paginacion-texto: #000000;
 
     /* Footer */
     --color-footer-texto: #CCCCCC;
@@ -27,8 +37,17 @@
 }
 
 .modo-oscuro{
+    /* Colores */
     --fondo-principal: #333333;
     --color-texto-principal: #ffffff;
     --color-texto-principal-politicas: #cccccc;
     --color-texto-principal-registro: #cccccc;
+
+    /* Paginacion */
+    --color-paginacion-fondo: #333333;
+    --color-paginacion-texto: #ffffff;
+
+    /* Lista Mascotas */
+    --color-fondo-mascotas: #666666;
+    --color-texto-mascotas: #ffffff;
 }
