@@ -105,3 +105,26 @@ export const obtenerAnimalesPorNombre = async (req, res) => {
       .json({ error: "Error al buscar el usuario", details: error.message });
   }
 };
+
+export const editarAnimal = async (req, res) => {
+  const { id } = req.params;
+
+  // Validación de campos
+  if (!id) {
+      return res.status(400).json({ error: 'Todos los campos son requeridos para actualizar un animal' });
+  }
+
+  try {
+      // Buscar y actualizar el animal por nombre
+      const animalActualizado = await Animales.findByIdAndUpdate(
+          id,
+          req.body, {
+            new: true,
+          }
+      );
+
+      res.json({ message: "Animal actualizado con éxito", animalActualizado });
+  } catch (error) {
+      res.status(500).json({ error: 'Error al actualizar el animal', details: error.message });
+  }
+};
