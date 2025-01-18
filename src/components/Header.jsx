@@ -56,9 +56,9 @@ export default function Header() {
                 <nav className="nav" id="nav-menu">
                     <ul>
                         <li><Link to="/">INICIO</Link></li>
-                        <li><Link to="/">NUESTRO EQUIPO</Link></li>
-                        <li><Link to="/">SERVICIOS</Link></li>
-                        <li><Link to="/">TIENDA</Link></li>
+                        <li><Link to="/mascotas">MASCOTAS</Link></li>
+                        <li><Link to="/">INICIO</Link></li>
+                        <li><Link to="/">INICIO</Link></li>
                         <li><Link to="contacto">CONTACTO</Link></li>
                         {
                             isAuthenticated ?
