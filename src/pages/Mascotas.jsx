@@ -1,5 +1,6 @@
 import "../css/mascotas.css";
 import {useState} from "react";
+import {Link} from "react-router-dom";
 
 export default function Mascotas() {
 
@@ -124,7 +125,7 @@ export default function Mascotas() {
             <div className="area2">
                 <div className="lista-mascotas">
                     {mascotasSeleccionadas.map((animal, index) => (
-                        <div className="carta-mascotas" key={index}>
+                        <Link className="carta-mascotas" key={index} to={`/mascota/${index + 1}`}>
                             <h2>{animal.nombre}</h2>
                             <p><strong>Especie:</strong> {animal.especie}</p>
                             <p><strong>Raza:</strong> {animal.raza}</p>
@@ -132,7 +133,7 @@ export default function Mascotas() {
                             <p><strong>Estado de Salud:</strong> {animal.estadoSalud}</p>
                             <p><strong>Dueño:</strong> {animal.duenio}</p>
                             <p><strong>Registrado el:</strong> {animal.fechaRegistro}</p>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>
