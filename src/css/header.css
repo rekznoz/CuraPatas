@@ -68,18 +68,19 @@
     margin: 0 10px;
 }
 
-.header-main .nav ul li a, span {
+.header-main .nav ul li a, .header-main .nav ul li span {
     text-decoration: none;
     font-weight: bold;
     color: var(--color-texto-principal);
 }
 
-.header-main .nav ul li a:hover, span:hover {
+.header-main .nav ul li a:hover, .header-main .nav ul li span:hover {
     color: #0095FF;
     cursor: pointer;
 }
 
 /* Hamburger Menu */
+
 .header-main .hamburger {
     display: none;
     font-size: 24px;
@@ -88,15 +89,51 @@
     cursor: pointer;
 }
 
+.nav-menu-movil {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--fondo-principal);
+}
+
+.nav-hamburger {
+    width: 100%;
+    background-color: var(--fondo-principal);
+}
+
+.nav-hamburger ul {
+    width: 100%;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.nav-hamburger ul li {
+    margin: 0;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.nav-hamburger ul li a, .nav-hamburger ul li span {
+    color: var(--color-texto-principal);
+}
+
+.nav-hamburger ul li a:hover {
+    color: #0095FF;
+}
+
 @media screen and (max-width: 1000px) {
-    .header-main .nav ul li a, span {
+    .header-main .nav ul li a, .header-main .nav ul li span {
         font-size: 12px;
     }
 }
 
 @media screen and (max-width: 750px) {
-    .header-main .nav ul li a, span {
-        font-size: 10px;
+    .header-main .nav ul li a, .header-main .nav ul li span {
+        font-size: 11px;
     }
 }
 
@@ -104,30 +141,13 @@
 
     .header-main .nav {
         display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 20%; /* Justo debajo del contenedor */
-        left: 0;
-        right: 0;
-        background-color: var(--fondo-principal);
-        z-index: 10; /* Para que quede sobre otros elementos */
-    }
-
-    .header-main .nav ul {
-        flex-direction: column;
-        text-align: center;
-        width: 100%;
-    }
-
-    .header-main .nav ul li {
-        margin: 10px 0;
     }
 
     .header-main .hamburger {
         display: block;
     }
 
-    .header-main .nav.show {
+    .nav-menu-movil.show {
         display: flex;
     }
 
