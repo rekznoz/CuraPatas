@@ -4,7 +4,7 @@
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 }
 
-.animal-detail {
+.detalles-mascota {
     background: var(--color-cuadro-mascota);
     padding: 2rem;
     border-radius: 8px;
@@ -14,23 +14,23 @@
     text-align: center;
 }
 
-.animal-detail p {
+.detalles-mascota p {
     padding: 8px;
     color: var(--color-texto-mascota);
 }
 
-.animal-detail strong {
+.detalles-mascota strong {
     font-weight: bold;
 }
 
-.not-found {
+.no-encontrado {
     text-align: center;
     margin-top: 2rem;
     font-size: 50px;
     color: var(--color-texto-mascota);
 }
 
-.not-found button {
+.no-encontrado button {
     background-color: var(--color-boton-mascota);
     border: none;
     padding: 1rem 2rem;
