@@ -1,5 +1,6 @@
 import Animales from '../models/Animales.js'; 
-export const createAnimal = async (req, res) => {
+
+export const crearAnimal = async (req, res) => {
     const { nombre, especie, raza, edad, estadoSalud, duenio, fechaRegistro } = req.body;
 
     // Validación de campos
@@ -19,7 +20,7 @@ export const createAnimal = async (req, res) => {
 
 export const obtenerAnimales = async (req, res) => {
     try {
-        const { page = 1, limit = 10 } = req.query;
+        const { page = 1, limit = 99 } = req.query;
 
         // Convertir valores de paginación a números
         const pageNumber = Math.max(1, parseInt(page, 10));

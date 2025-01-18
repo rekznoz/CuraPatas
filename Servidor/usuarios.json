@@ -1,19 +1,19 @@
 [
     {
-      "username": "luna_mendez",
-      "email": "luna.mendez@example.com",
-      "contraseña": "pass1234",
+      "nombreUsuario": "nati",
+      "correo": "nati@example.com",
+      "secreto": "pass1234",
       "animales": [],
-      "rol": "usuario",
+      "rol": "admin",
       "descripcion": "Amante de los animales y la naturaleza.",
       "ubicacion": "Buenos Aires, Argentina",
       "telefono": "+54 911 2345 6789",
       "fechaRegistro": "2023-05-12"
     },
     {
-      "username": "carlos_vega",
-      "email": "carlos.vega@example.com",
-      "contraseña": "segura567",
+      "nombreUsuario": "rafa",
+      "correo": "rafa@example.com",
+      "secreto": "pass1234",
       "animales": [],
       "rol": "admin",
       "descripcion": "Administrador del sistema.",
@@ -22,9 +22,9 @@
       "fechaRegistro": "2022-11-03"
     },
     {
-      "username": "sofia_ramos",
-      "email": "sofia.ramos@example.com",
-      "contraseña": "mypassword2023",
+      "nombreUsuario": "jose_alfonso",
+      "correo": "jose_alfonso@example.com",
+      "secreto": "pass1234",
       "animales": [],
       "rol": "usuario",
       "descripcion": "Veterinaria apasionada.",
@@ -33,9 +33,9 @@
       "fechaRegistro": "2023-01-25"
     },
     {
-      "username": "marco_diaz",
-      "email": "marco.diaz@example.com",
-      "contraseña": "adminpass90",
+      "nombreUsuario": "marco_diaz",
+      "correo": "marco.diaz@example.com",
+      "secreto": "adminpass90",
       "animales": [],
       "rol": "moderador",
       "descripcion": "Moderador de la comunidad.",
@@ -44,9 +44,9 @@
       "fechaRegistro": "2021-08-14"
     },
     {
-      "username": "valentina_lopez",
-      "email": "valentina.lopez@example.com",
-      "contraseña": "securePass123",
+      "nombreUsuario": "valentina_lopez",
+      "correo": "valentina.lopez@example.com",
+      "secreto": "securePass123",
       "animales": [],
       "rol": "usuario",
       "descripcion": "Diseñadora gráfica freelance.",
@@ -55,9 +55,9 @@
       "fechaRegistro": "2023-04-09"
     },
     {
-      "username": "andres_martinez",
-      "email": "andres.martinez@example.com",
-      "contraseña": "password!@#",
+      "nombreUsuario": "andres_martinez",
+      "correo": "andres.martinez@example.com",
+      "secreto": "password!@#",
       "animales": [],
       "rol": "usuario",
       "descripcion": "Fanático de los deportes.",
@@ -66,9 +66,9 @@
       "fechaRegistro": "2022-07-30"
     },
     {
-      "username": "isabella_gomez",
-      "email": "isabella.gomez@example.com",
-      "contraseña": "isabella2023",
+      "nombreUsuario": "isabella_gomez",
+      "correo": "isabella.gomez@example.com",
+      "secreto": "isabella2023",
       "animales": [],
       "rol": "admin",
       "descripcion": "Creadora de contenido digital.",
@@ -77,9 +77,9 @@
       "fechaRegistro": "2021-12-11"
     },
     {
-      "username": "sebastian_ruiz",
-      "email": "sebastian.ruiz@example.com",
-      "contraseña": "sebRuiz99",
+      "nombreUsuario": "sebastian_ruiz",
+      "correo": "sebastian.ruiz@example.com",
+      "secreto": "sebRuiz99",
       "animales": [],
       "rol": "moderador",
       "descripcion": "Explorador y amante de los viajes.",
@@ -88,9 +88,9 @@
       "fechaRegistro": "2023-02-18"
     },
     {
-      "username": "camila_fernandez",
-      "email": "camila.fernandez@example.com",
-      "contraseña": "camiPass321",
+      "nombreUsuario": "camila_fernandez",
+      "correo": "camila.fernandez@example.com",
+      "secreto": "camiPass321",
       "animales": [],
       "rol": "usuario",
       "descripcion": "Estudiante de biología.",
@@ -99,9 +99,9 @@
       "fechaRegistro": "2022-10-05"
     },
     {
-      "username": "mateo_silva",
-      "email": "mateo.silva@example.com",
-      "contraseña": "mateoSecure1",
+      "nombreUsuario": "mateo_silva",
+      "correo": "mateo.silva@example.com",
+      "secreto": "mateoSecure1",
       "animales": [],
       "rol": "usuario",
       "descripcion": "Desarrollador web.",

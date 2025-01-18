@@ -1,12 +1,12 @@
 import { Router } from 'express';
 
 import {
-  login,
   crearUsuario,
   obtenerUsuarios,
   obtenerUsuario,
   editarUsuario,
-  eliminarUsuario
+  eliminarUsuario,
+  inicioSesion
 } from '../controllers/usuarioController.js';
 
 const router = Router();
@@ -21,12 +21,12 @@ router.get('/', obtenerUsuarios);
 router.get('/:username', obtenerUsuario);
 
 // Iniciar sesión
-router.post('/login', login);
+router.post('/login', inicioSesion);
 
 // Editar usuario por ID
 router.put('/:id', editarUsuario);
 
 // Eliminar usuario (se recomienda especificar el ID)
-router.delete('/:id', eliminarUsuario);
+router.delete('/', eliminarUsuario);
 
 export default router;

@@ -23,7 +23,7 @@ app.use(cors()); // Permitir peticiones de cualquier origen
 app.use(express.json()); // Reemplaza body-parser
 
 // Rutas
-app.use("/usuario", usuarioRoutes);
+app.use("/usuarios", usuarioRoutes);
 app.use("/animales", animalesRoutes);
 
 // Configuración del puerto

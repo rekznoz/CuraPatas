@@ -3,10 +3,9 @@ import { Schema, model } from 'mongoose';
 const currentDate = new Date(); // Definición correcta de currentDate
 
 const userSchema = new Schema({
-    username: { type: String, required: true, unique: true },
-    email: { type: String, required: true },
+    nombreUsuario: { type: String, required: true, unique: true },
+    correo: { type: String, required: true },
     secreto: { type: String, required: true },
-    nombre: { type: String, required: false, default: "" },
     animales: { type: [String], required: false, default: [] }, // Definir tipo explícito para el array
     rol: { type: String, required: true, default: "usuario" },
     descripcion: { type: String, required: false, default: "" },
@@ -19,4 +18,4 @@ const userSchema = new Schema({
     }
 });
 
-export default model('Users', userSchema);
+export default model('Usuario', userSchema);
