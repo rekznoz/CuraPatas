@@ -185,6 +185,10 @@ export const eliminarUsuario = async (req, res) => {
     // Buscar y eliminar el usuario por nombre
     const resultadoUsuario = await Usuarios.find({ nombreUsuario });
 
+    if (!resultadoUsuario) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+  }
+  
     const { _id } = resultadoUsuario[0];
     const usuarioBorrado = await Usuarios.findByIdAndDelete(_id);
 
