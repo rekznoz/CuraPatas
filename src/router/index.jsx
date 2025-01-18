@@ -4,6 +4,7 @@ import Error from "../pages/Error.jsx";
 import Inicio from "../pages/Inicio.jsx";
 import Contacto from "../pages/Contacto.jsx";
 import PerfilUsuario from "../pages/PerfilUsuario.jsx";
+import Mascotas from "../pages/Mascotas.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
             {
                 path: "usuario/:username",
                 element: <PerfilUsuario/>,
+            },
+            {
+                path: "mascotas",
+                element: <Mascotas/>,
             }
         ],
     },
