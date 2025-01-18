@@ -38,34 +38,70 @@ export const crearAnimal = async (req, res) => {
 };
 
 export const obtenerAnimales = async (req, res) => {
-    const { nombre, especie, raza, edad, estadoSalud, duenio, fechaRegistro, page = 1, limit = 99 } = req.query;
-  
-    const filter = [
-      { key: 'nombre', value: nombre },
-      { key: 'especie', value: especie },
-      { key: 'raza', value: raza },
-      { key: 'edad', value: edad ? Number(edad) : null },
-      { key: 'estadoSalud', value: estadoSalud },
-      { key: 'duenio', value: duenio },
-      { key: 'fechaRegistro', value: fechaRegistro ? { $gte: new Date(fechaRegistro) } : null }
-    ].reduce((acc, { key, value }) => {
-      if (value !== undefined && value !== null) {
-        acc[key] = typeof value === 'string' ? { $regex: value, $options: 'i' } : value;
-      }
-      return acc;
-    }, {});
-  
-    try {
-      const pageNumber = Math.max(1, parseInt(page, 10));
-      const limitNumber = Math.max(1, parseInt(limit, 10));
-      const [animales, total] = await Promise.all([
-        Animales.find(filter).skip((pageNumber - 1) * limitNumber).limit(limitNumber),
-        Animales.countDocuments(filter)
-      ]);
-  
-      res.json({ total, page: pageNumber, limit: limitNumber, data: animales });
-    } catch (error) {
-      res.status(500).json({ error: 'Error al obtener los animales', details: error.message });
+  const {
+    nombre,
+    especie,
+    raza,
+    edad,
+    estadoSalud,
+    duenio,
+    fechaRegistro,
+    page = 1,
+    limit = 99,
+  } = req.query;
+
+  const filter = [
+    { key: "nombre", value: nombre },
+    { key: "especie", value: especie },
+    { key: "raza", value: raza },
+    { key: "edad", value: edad ? Number(edad) : null },
+    { key: "estadoSalud", value: estadoSalud },
+    { key: "duenio", value: duenio },
+    {
+      key: "fechaRegistro",
+      value: fechaRegistro ? { $gte: new Date(fechaRegistro) } : null,
+    },
+  ].reduce((acc, { key, value }) => {
+    if (value !== undefined && value !== null) {
+      acc[key] =
+        typeof value === "string" ? { $regex: value, $options: "i" } : value;
     }
-  };
-  
+    return acc;
+  }, {});
+
+  try {
+    const pageNumber = Math.max(1, parseInt(page, 10));
+    const limitNumber = Math.max(1, parseInt(limit, 10));
+    const [animales, total] = await Promise.all([
+      Animales.find(filter)
+        .skip((pageNumber - 1) * limitNumber)
+        .limit(limitNumber),
+      Animales.countDocuments(filter),
+    ]);
+
+    res.json({ total, page: pageNumber, limit: limitNumber, data: animales });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Error al obtener los animales", details: error.message });
+  }
+};
+
+export const obtenerAnimalesPorNombre = async (req, res) => {
+  const { nombre } = req.params;
+  if (!nombre) {
+    return res.status(400).json({
+      error: "El nombre de usuario es requerido para buscar un usuario",
+    });
+  }
+
+  try {
+    // Buscar el usuario por nombre
+    const animal = await Animales.find({ nombre });
+    res.json(animal);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Error al buscar el usuario", details: error.message });
+  }
+};

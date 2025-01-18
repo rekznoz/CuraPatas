@@ -82,29 +82,56 @@ export const inicioSesion = async (req, res) => {
   }
 };
 
-export const obtenerUsuarios = async (req, res) => {
-  try {
-    const { page = 1, limit = 99 } = req.query;
 
-    // Convertir valores de paginación a números
+export const obtenerUsuarios = async (req, res) => {
+  const {
+    nombreUsuario,
+    correo,
+    secreto,
+    animales,
+    rol,
+    descripcion,
+    ubicacion,
+    telefono,
+    fechaRegistro,
+    page = 1,
+    limit = 99
+  } = req.query;
+
+  const filter = [
+    { key: 'nombreUsuario', value: nombreUsuario },
+    { key: 'correo', value: correo },
+    { key: 'secreto', value: secreto },
+    { key: 'animales', value: animales },
+    { key: 'rol', value: rol },
+    { key: 'descripcion', value: descripcion },
+    { key: 'ubicacion', value: ubicacion },
+    { key: 'telefono', value: telefono },
+    { key: 'fechaRegistro', value: fechaRegistro }
+  ].reduce((acc, { key, value }) => {
+    if (value !== undefined && value !== null) {
+      acc[key] = typeof value === 'string' ? { $regex: value, $options: 'i' } : value;
+    }
+    return acc;
+  }, {});
+
+  try {
     const pageNumber = Math.max(1, parseInt(page, 10));
     const limitNumber = Math.max(1, parseInt(limit, 10));
+    const [usuarios, total] = await Promise.all([
+      Usuarios.find(filter).skip((pageNumber - 1) * limitNumber).limit(limitNumber),
+      Usuarios.countDocuments(filter)
+    ]);
 
-    const usuarios = await Usuarios.find()
-      .skip((pageNumber - 1) * limitNumber)
-      .limit(limitNumber);
-
-    res.json(usuarios);
+    res.json({ total, page: pageNumber, limit: limitNumber, data: usuarios });
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Error al obtener los usuarios", details: error.message });
+    res.status(500).json({ error: 'Error al obtener los usuarios', details: error.message });
   }
 };
 
-export const obtenerUsuario = async (req, res) => {
+
+export const obtenerUsuarioPorNombre = async (req, res) => {
   const { nombreUsuario } = req.params;
-  console.log(nombreUsuario)
 
   if (!nombreUsuario) {
     return res.status(400).json({
