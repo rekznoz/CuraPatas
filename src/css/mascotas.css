@@ -7,13 +7,21 @@
     margin-bottom: 50px;
 }
 
+.contenedor-filtro-mascotas {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* Filtros ocupa 1 parte, contenido 3 partes */
+    gap: 20px;
+    align-items: flex-start; /* Alinea los filtros al inicio */
+    margin: 0 auto;
+    width: 90%; /* Ajusta el ancho del contenedor */
+}
+
 /* Lista de Animales */
 .lista-mascotas {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    width: 80%;
-    margin: 0 auto;
     gap: 20px;
+    width: 100%;
 }
 
 /* Carta de Mascotas */
@@ -94,4 +102,38 @@
     .boton-paginacion {
         padding: 10px;
     }
+
+    .contenedor-filtro-mascotas {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* Filtros */
+
+.filtros-mascotas {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--color-fondo-mascotas);
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.filtros-mascotas input,
+.filtros-mascotas select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.filtros-mascotas input:focus,
+.filtros-mascotas select:focus {
+    outline: none;
+    border-color: #4CAF50;
 }
