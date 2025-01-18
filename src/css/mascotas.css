@@ -1,0 +1,97 @@
+.area1 h1 {
+    color: var(--color-texto-principal-azul);
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+/* Lista de Animales */
+.lista-mascotas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 80%;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+/* Carta de Mascotas */
+.carta-mascotas {
+    background: var(--color-fondo-mascotas);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    transition: transform 0.3s;
+}
+
+.carta-mascotas:hover {
+    transform: scale(1.05);
+}
+
+.carta-mascotas h2 {
+    margin-top: 0;
+    color: var(--color-texto-principal-azul);
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.carta-mascotas p {
+    margin: 0.5rem 0;
+    color: var(--color-texto-mascotas);
+}
+
+.carta-mascotas strong {
+    font-weight: bold;
+}
+
+/* Paginacion */
+.pagination {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin: 20px;
+}
+
+.boton-paginacion {
+    background-color: var(--color-paginacion-fondo);
+    color: var(--color-paginacion-texto);
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.boton-paginacion:hover {
+    background-color: var(--color-texto-principal-azul);
+}
+
+.boton-paginacion.active {
+    background-color: var(--color-texto-principal-azul);
+}
+
+@media screen and (max-width: 940px) {
+    .lista-mascotas {
+        grid-template-columns: repeat(2, 2fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .area1 h1 {
+        font-size: 30px;
+    }
+
+    .lista-mascotas {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .carta-mascotas {
+        padding: 20px;
+    }
+
+    .boton-paginacion {
+        padding: 10px;
+    }
+}
