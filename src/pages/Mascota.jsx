@@ -45,7 +45,7 @@ export default function Mascota() {
         return (
             <>
                 <div className="area1">
-                    <div className="not-found">
+                    <div className="no-encontrado">
                         <h2>Mascota no encontrada</h2>
                         <button onClick={() => navigate('/')}>Volver a la lista</button>
                     </div>
@@ -63,7 +63,7 @@ export default function Mascota() {
                 <h1>Detalles de {animal.nombre}</h1>
             </div>
             <div className="area2">
-                <div className="animal-detail">
+                <div className="detalles-mascota">
                     <p><strong>Especie:</strong> {animal.especie}</p>
                     <p><strong>Raza:</strong> {animal.raza}</p>
                     <p><strong>Edad:</strong> {animal.edad} años</p>
