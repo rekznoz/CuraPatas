@@ -94,35 +94,6 @@
 
 /* Estilos de la sección de Animales */
 
-/*
-
-<div className="seccion-animales">
-    <h3>Mis Animales</h3>
-    <button className="boton-agregar-animal" onClick={mostrarAgregarAnimal}>Agregar Animal</button>
-    <div className="lista-animales">
-        {
-            animales.map((animal, index) => {
-                return (
-                    <div key={index} className="animal">
-                        <img className="foto-animal"
-                             src="https://mighty.tools/mockmind-api/content/human/122.jpg"
-                             alt="animal"/>
-                        <div className="nombre-animal">{animal.nombre}</div>
-                        <div className="especie-animal">{animal.especie}</div>
-                        <div className="raza-animal">{animal.raza}</div>
-                        <div className="edad-animal">{animal.edad}</div>
-                        <div className="estado-salud-animal">{animal.estadoSalud}</div>
-                        <div className="fecha-registro-animal">{animal.fechaRegistro}</div>
-                        <button className="boton-editar-animal" onClick={mostrarEditarAnimal}>Editar</button>
-                    </div>
-                )
-            })
-        }
-    </div>
-</div>
-
- */
-
 .seccion-animales {
     background-color: var(--fondo-principal);
     width: 60%;
@@ -132,6 +103,14 @@
     border-radius: 8px;
     padding: 20px;
     margin-top: 20px;
+}
+
+.seccion-animales h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #AAAAAA;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 1px #000;
 }
 
 .boton-agregar-animal {
@@ -183,121 +162,14 @@
     padding: 8px 16px;
     border-radius: 4px;
     cursor: pointer;
+    margin-bottom: 20px;
 }
 
-.especie-animal {
-    font-size: 16px;
-}
-
-.raza-animal {
-    font-size: 16px;
-}
-
-.edad-animal {
-    font-size: 16px;
-}
-
-.estado-salud-animal {
-    font-size: 16px;
-}
-
-.fecha-registro-animal {
+.texto-mascota {
     font-size: 16px;
 }
 
 /* Modal de edición de usuario */
-
-/*
-<div className="modal-editar-usuario">
-{
-    editar ?
-        <Formik
-            initialValues={usuario}
-            validationSchema={validationSchema}
-            onSubmit={(values) => {
-                handleSave(values)
-            }}
-        >
-            {({values, handleChange, handleBlur, handleSubmit, errors, touched}) => (
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="nombre">Nombre</label>
-                        <input
-                            type="text"
-                            name="nombre"
-                            id="nombre"
-                            value={values.nombre}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
-                        {errors.nombre && touched.nombre ? (
-                            <div className="error">{errors.nombre}</div>
-                        ) : null}
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="correo">Correo</label>
-                        <input
-                            type="email"
-                            name="correo"
-                            id="correo"
-                            value={values.correo}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
-                        {errors.correo && touched.correo ? (
-                            <div className="error">{errors.correo}</div>
-                        ) : null}
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="ubicacion">Ubicación</label>
-                        <input
-                            type="text"
-                            name="ubicacion"
-                            id="ubicacion"
-                            value={values.ubicacion}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
-                        {errors.ubicacion && touched.ubicacion ? (
-                            <div className="error">{errors.ubicacion}</div>
-                        ) : null}
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="telefono">Teléfono</label>
-                        <input
-                            type="text"
-                            name="telefono"
-                            id="telefono"
-                            value={values.telefono}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
-                        {errors.telefono && touched.telefono ? (
-                            <div className="error">{errors.telefono}</div>
-                        ) : null}
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="descripcion">Descripción</label>
-                        <textarea
-                            name="descripcion"
-                            id="descripcion"
-                            value={values.descripcion}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                        />
-                        {errors.descripcion && touched.descripcion ? (
-                            <div className="error">{errors.descripcion}</div>
-                        ) : null
-                        }
-                    </div>
-                    <button type="submit">Guardar</button>
-                </form>
-            )}
-        </Formik>
-        : null
-}
-</div>
- */
 
 .modal-editar-usuario {
     display: flex;
@@ -361,110 +233,6 @@
 }
 
 /* Modal agregar animal */
-
-/*
-
-<div className="modal-agregar-animal">
-<Formik
-    initialValues={animal}
-    validationSchema={validacionAnimal}
-    onSubmit={(values) => {
-        console.log(values)
-    }}
->
-    {({values, handleChange, handleBlur, handleSubmit, errors, touched}) => (
-        <form onSubmit={handleSubmit}>
-            <div className="form-group">
-                <label htmlFor="nombre">Nombre</label>
-                <input
-                    type="text"
-                    name="nombre"
-                    id="nombre"
-                    value={values.nombre}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                />
-                {errors.nombre && touched.nombre ? (
-                    <div className="error">{errors.nombre}</div>
-                ) : null}
-            </div>
-            <div className="form-group">
-                <label htmlFor="especie">Especie</label>
-                <input
-                    type="text"
-                    name="especie"
-                    id="especie"
-                    value={values.especie}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                />
-                {errors.especie && touched.especie ? (
-                    <div className="error">{errors.especie}</div>
-                ) : null}
-            </div>
-            <div className="form-group">
-                <label htmlFor="raza">Raza</label>
-                <input
-                    type="text"
-                    name="raza"
-                    id="raza"
-                    value={values.raza}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                />
-                {errors.raza && touched.raza ? (
-                    <div className="error">{errors.raza}</div>
-                ) : null}
-            </div>
-            <div className="form-group">
-                <label htmlFor="edad">Edad</label>
-                <input
-                    type="text"
-                    name="edad"
-                    id="edad"
-                    value={values.edad}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                />
-                {errors.edad && touched.edad ? (
-                    <div className="error">{errors.edad}</div>
-                ) : null}
-            </div>
-            <div className="form-group">
-                <label htmlFor="estadoSalud">Estado de Salud</label>
-                <input
-                    type="text"
-                    name="estadoSalud"
-                    id="estadoSalud"
-                    value={values.estadoSalud}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                />
-                {errors.estadoSalud && touched.estadoSalud ? (
-                    <div className="error">{errors.estadoSalud}</div>
-                ) : null
-                }
-            </div>
-            <div className="form-group">
-                <label htmlFor="perdida">Perdida</label>
-                <input
-                    type="checkbox"
-                    name="perdida"
-                    id="perdida"
-                    value={values.perdida}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                />
-                {errors.perdida && touched.perdida && <div className="error">{errors.perdida}</div>}
-            </div>
-            <button type="submit">Guardar</button>
-            <button onClick={mostrarAgregarAnimal}>Cancelar</button>
-        </form>
-    )}
-</Formik>
-</div>
-
- */
 
 .modal-agregar-animal {
     display: flex;
