@@ -41,3 +41,13 @@ export const agregarAnimal = async (animal) => {
         return {}
     }
 }
+
+export const editarAnimal = async (animal) => {
+    try {
+        const response = await axios.put(`${API_URL}${animal._id}`, animal);
+        return response.data;
+    } catch (error) {
+        console.error("Error al editar animal:", error)
+        return {}
+    }
+}
