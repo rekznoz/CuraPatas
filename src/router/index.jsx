@@ -6,6 +6,7 @@ import Contacto from "../pages/Contacto.jsx";
 import PerfilUsuario from "../pages/PerfilUsuario.jsx";
 import Mascotas from "../pages/Mascotas.jsx";
 import Mascota from "../pages/Mascota.jsx";
+import {obtenerPerfilePorUsername} from "../config/PerfilService.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -28,6 +29,7 @@ export const router = createBrowserRouter([
             {
                 path: "usuario/:username",
                 element: <PerfilUsuario/>,
+                loader: obtenerPerfilePorUsername,
             },
             {
                 path: "mascotas",
