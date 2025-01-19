@@ -4,7 +4,7 @@ const API_URL = "http://localhost:3000";
 
 export const registrarUsuario = async (userData) => {
     try {
-        const response = await axios.post(`${API_URL}/usuario`, userData, {
+        const response = await axios.post(`${API_URL}/usuarios`, userData, {
             headers: {"Content-Type": "application/json"}
         });
         return response.data;
@@ -15,12 +15,12 @@ export const registrarUsuario = async (userData) => {
 
 export const loguearUsuario = async (userData) => {
 
-    if (!userData || !userData.email || !userData.secreto) {
+    if (!userData || !userData.correo || !userData.secreto) {
         throw new Error("Faltan datos para el login (email y/o contraseña)");
     }
 
     try {
-        const response = await axios.post(`${API_URL}/usuario/login`, userData, {
+        const response = await axios.post(`${API_URL}/usuarios/login`, userData, {
             headers: {"Content-Type": "application/json"},
         });
 
@@ -44,7 +44,7 @@ export const loguearUsuario = async (userData) => {
 
 export const editarUsuario = async (id, userData) => {
     try {
-        const response = await axios.put(`${API_URL}/usuario/${id}`, userData, {
+        const response = await axios.put(`${API_URL}/usuarios/${id}`, userData, {
             headers: {"Content-Type": "application/json"},
         });
         return response.data;
