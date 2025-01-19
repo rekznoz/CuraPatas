@@ -9,8 +9,6 @@ export default function Header() {
     const [modo, setModo] = useState("claro");
     const {login, user, logout, isAuthenticated} = useContext(AuthContext);
 
-    console.log(user);
-
     const navLinks = [
         {path: "/", label: "INICIO"},
         {path: "/mascotas", label: "MASCOTAS"},
