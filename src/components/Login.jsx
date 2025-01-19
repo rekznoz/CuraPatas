@@ -12,7 +12,7 @@ import {Link} from "react-router-dom"
 // https://www.npmjs.com/package/yup
 
 const validationSchema = object({
-    email: string()
+    correo: string()
         .required('El campo email es obligatorio')
         .email('El email no es válido'),
     secreto: string()
@@ -24,8 +24,8 @@ const validationSchema = object({
 })
 
 const usuarioVacio = {
-    username: 'brad_vickers',
-    email: 'rafa@asd.com',
+    nombreUsuario: 'brad_vickers',
+    correo: 'rafa@asd.com',
     secreto: 'asdasd',
     terminos: false
 }
@@ -86,11 +86,11 @@ export default function Login() {
 
                                 {registro ?
                                     <div className="contenedor-entrada">
-                                        <input type="username" placeholder="Ingrese su Usuario"
-                                               name="username"
-                                               value={values.username} onBlur={handleBlur} onChange={handleChange}/>
-                                        {touched.username && errors.username ?
-                                            <p className="FormError">{errors.username}</p> : null}
+                                        <input type="nombreUsuario" placeholder="Ingrese su Usuario"
+                                               name="nombreUsuario"
+                                               value={values.nombreUsuario} onBlur={handleBlur} onChange={handleChange}/>
+                                        {touched.nombreUsuario && errors.nombreUsuario ?
+                                            <p className="FormError">{errors.nombreUsuario}</p> : null}
                                     </div>
                                     : <></>
                                 }
@@ -98,8 +98,8 @@ export default function Login() {
                                 <div className="contenedor-entrada">
                                     <input type="email" placeholder="Ingrese su Email"
                                            name="email"
-                                           value={values.email} onBlur={handleBlur} onChange={handleChange}/>
-                                    {touched.email && errors.email ? <p className="FormError">{errors.email}</p> : null}
+                                           value={values.correo} onBlur={handleBlur} onChange={handleChange}/>
+                                    {touched.correo && errors.correo ? <p className="FormError">{errors.correo}</p> : null}
                                 </div>
 
                                 <div className="contenedor-entrada">
