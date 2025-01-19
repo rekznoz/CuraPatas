@@ -10,7 +10,7 @@ import "../css/perfilesusuario.css";
 import {AuthContext} from "../context/AuthContext.jsx";
 import {editarUsuario} from "../config/AuthService.jsx";
 import {useLoaderData} from "react-router-dom";
-import {agregarAnimal, obtenerAnimalesUsuario} from "../config/AnimalesService.jsx";
+import {agregarAnimal, editarAnimal, obtenerAnimalesUsuario} from "../config/AnimalesService.jsx";
 
 const validacionPerfil = object({
     foto: string()
@@ -119,6 +119,7 @@ export default function PerfilUsuario() {
     const [modaleditarPerfil, setModaleditarPerfil] = useState(false)
     const [modaleditarAnimal, setModaleditarAnimal] = useState(false)
     const [modalagregarAnimal, setModalagregarAnimal] = useState(false)
+    const [datosEditarAnimal, setDatosEditarAnimal] = useState(animalVacio)
 
     // Datos del usuario
     const {login, user, logout, isAuthenticated} = useContext(AuthContext);
@@ -147,6 +148,8 @@ export default function PerfilUsuario() {
             setModaleditarAnimal(false)
         } else {
             setModaleditarAnimal(true)
+            const animal = animales.find(animal => animal._id === id)
+            setDatosEditarAnimal(animal)
         }
     }
 
@@ -191,6 +194,18 @@ export default function PerfilUsuario() {
             .then(response => {
                 console.log(response)
                 mostrarAgregarAnimal()
+                setAnimal(values)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }
+
+    const guardarAnimal = (values) => {
+        editarAnimal(values)
+            .then(response => {
+                console.log(response)
+                mostrarEditarAnimal()
                 setAnimal(values)
             })
             .catch(error => {
@@ -289,9 +304,7 @@ export default function PerfilUsuario() {
                 </div>
             </div>
 
-            {
-                /* Modal de edición de usuario */
-                modaleditarPerfil ?
+            {modaleditarPerfil ?
                     <div className="modal-editar-usuario">
                         <Formik
                             initialValues={usuario}
@@ -483,6 +496,110 @@ export default function PerfilUsuario() {
                     </Formik>
                 </div>
             )}
+
+            {modaleditarAnimal ?
+                    <div className="modal-editar-animal">
+                        <Formik
+                            initialValues={datosEditarAnimal}
+                            validationSchema={validacionAnimal}
+                            onSubmit={(values) => {
+                                guardarAnimal(values);
+                                console.log(values);
+                            }}
+                        >
+                            {({values, errors, touched, handleChange, handleBlur, handleSubmit}) => (
+                                <form onSubmit={handleSubmit}>
+                                    <div className="form-group">
+                                        <label htmlFor="nombre">Nombre</label>
+                                        <input
+                                            type="text"
+                                            name="nombre"
+                                            id="nombre"
+                                            value={values.nombre}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                        {errors.nombre && touched.nombre && <div className="error">{errors.nombre}</div>}
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="especie">Especie</label>
+                                        <input
+                                            type="text"
+                                            name="especie"
+                                            id="especie"
+                                            value={values.especie}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                        {errors.especie && touched.especie && <div className="error">{errors.especie}</div>}
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="raza">Raza</label>
+                                        <input
+                                            type="text"
+                                            name="raza"
+                                            id="raza"
+                                            value={values.raza}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                        {errors.raza && touched.raza && <div className="error">{errors.raza}</div>}
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="edad">Edad</label>
+                                        <input
+                                            type="text"
+                                            name="edad"
+                                            id="edad"
+                                            value={values.edad}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                        {errors.edad && touched.edad && <div className="error">{errors.edad}</div>}
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="estadoSalud">Estado de Salud</label>
+                                        <input
+                                            type="text"
+                                            name="estadoSalud"
+                                            id="estadoSalud"
+                                            value={values.estadoSalud}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                        {errors.estadoSalud && touched.estadoSalud &&
+                                            <div className="error">{errors.estadoSalud}</div>}
+                                    </div>
+                                    <div className="form-group-checkbox">
+                                        <label htmlFor="perdida">¿Esta perdida?</label>
+                                        <input
+                                            type="checkbox"
+                                            name="perdida"
+                                            id="perdida"
+                                            value={values.perdida}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                    </div>
+                                    <div className="form-group-checkbox">
+                                        <label htmlFor="adopcion">¿Esta en Adopcion?</label>
+                                        <input
+                                            type="checkbox"
+                                            name="adopcion"
+                                            id="adopcion"
+                                            value={values.adopcion}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                    </div>
+                                    <button type="submit">Guardar</button>
+                                    <button type="button" onClick={mostrarEditarAnimal}>Cancelar</button>
+                                </form>
+                            )}
+                        </Formik>
+                    </div>
+                    : null
+            }
 
         </>
     )
