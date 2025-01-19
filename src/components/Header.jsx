@@ -1,18 +1,20 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import React, {useContext, useState} from "react";
+import {Link} from "react-router-dom";
 import logo from "../assets/logo.png";
 import claro from "../assets/navbar/claro.png";
 import oscuro from "../assets/navbar/oscuro.png";
-import { AuthContext } from "../context/AuthContext.jsx";
+import {AuthContext} from "../context/AuthContext.jsx";
 
 export default function Header() {
     const [modo, setModo] = useState("claro");
-    const { login, user, logout, isAuthenticated } = useContext(AuthContext);
+    const {login, user, logout, isAuthenticated} = useContext(AuthContext);
+
+    console.log(user);
 
     const navLinks = [
-        { path: "/", label: "INICIO" },
-        { path: "/mascotas", label: "MASCOTAS" },
-        { path: "contacto", label: "CONTACTO" },
+        {path: "/", label: "INICIO"},
+        {path: "/mascotas", label: "MASCOTAS"},
+        {path: "contacto", label: "CONTACTO"},
     ];
 
     const toggleMenu = () => {
@@ -50,7 +52,7 @@ export default function Header() {
             </div>
             <div className="header-main">
                 <div className="logo">
-                    <img src={logo} alt="CuraPatas" />
+                    <img src={logo} alt="CuraPatas"/>
                 </div>
                 <button
                     className="hamburger"
@@ -70,7 +72,7 @@ export default function Header() {
                         {isAuthenticated ? (
                             <>
                                 <li>
-                                    <Link to={`/usuario/${user.username}`}>PERFIL</Link>
+                                    <Link to={`/usuario/${user.nombreUsuario}`}>PERFIL</Link>
                                 </li>
                                 <li>
                                     <span onClick={logout}>LOGOUT</span>
@@ -85,7 +87,7 @@ export default function Header() {
                 </nav>
             </div>
             <div className="nav-menu-movil" id="nav-menu-hamburger">
-                <nav className="nav-hamburger" >
+                <nav className="nav-hamburger">
                     <ul>
                         {navLinks.map((link) => (
                             <li key={link.path}>
@@ -95,7 +97,7 @@ export default function Header() {
                         {isAuthenticated ? (
                             <>
                                 <li>
-                                    <Link to={`/usuario/${user.username}`}>PERFIL</Link>
+                                    <Link to={`/usuario/${user.nombreUsuario}`}>PERFIL</Link>
                                 </li>
                                 <li>
                                     <span onClick={logout}>LOGOUT</span>
