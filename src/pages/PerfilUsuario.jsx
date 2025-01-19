@@ -10,12 +10,11 @@ import "../css/perfilesusuario.css";
 import {AuthContext} from "../context/AuthContext.jsx";
 import {editarUsuario} from "../config/AuthService.jsx";
 import {useLoaderData} from "react-router-dom";
-import {agregarAnimal} from "../config/AnimalesService.jsx";
+import {agregarAnimal, obtenerAnimales} from "../config/AnimalesService.jsx";
 
 const validacionPerfil = object({
     foto: string()
-        .url('La foto no es válida o no es una URL')
-        .matches(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/, 'La URL no es válida'),
+        .url('La foto no es válida o no es una URL'),
     nombre: string()
         .required('El campo nombre es obligatorio')
         .max(50, 'El nombre no puede tener más de 50 caracteres')
@@ -125,13 +124,14 @@ export default function PerfilUsuario() {
     const {login, user, logout, isAuthenticated} = useContext(AuthContext);
     const [usuario, setUsuario] = useState(perfilVacio)
     const [animal, setAnimal] = useState(animalVacio)
+    const [animales, setAnimales] = useState([])
     const datosUsuario = useLoaderData()[0]
 
     if (!datosUsuario) {
         return <></>
     }
 
-    const {_id, nombreUsuario, secreto, animales} = datosUsuario
+    const {_id, nombreUsuario, secreto} = datosUsuario
     const {nombre, correo, rol, descripcion, ubicacion, telefono, fechaRegistro} = usuario
 
     const mostrarEditarPerfil = () => {
@@ -198,6 +198,18 @@ export default function PerfilUsuario() {
             })
     }
 
+    // obtener animales del usuario
+    useEffect(() => {
+        obtenerAnimales(nombreUsuario)
+            .then(response => {
+                console.log(response)
+                setAnimales(response)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }, [nombreUsuario])
+
     return (
         <>
             <div className="area1">
@@ -240,27 +252,27 @@ export default function PerfilUsuario() {
             <div className="area3">
                 <div className="seccion-animales">
                     <h3>Mis Animales</h3>
-                    {
-                        isAuthenticated && user.nombreUsuario === nombreUsuario ?
-                            <button className="boton-editar-animal" onClick={mostrarAgregarAnimal}>Agregar Animal</button>
-                            : null
+                    {isAuthenticated && user.nombreUsuario === nombreUsuario ?
+                        <button className="boton-editar-animal" onClick={mostrarAgregarAnimal}>Agregar Animal</button>
+                        : null
                     }
                     <div className="lista-animales">
                         {
                             animales.map((animal, index) => {
                                 return (
                                     <div key={index} className="animal">
-                                        <img className="foto-animal"
-                                             src="https://mighty.tools/mockmind-api/content/human/122.jpg"
-                                             alt="animal"/>
-                                        <div className="nombre-animal">{animal.nombre}</div>
-                                        <div className="especie-animal">{animal.especie}</div>
-                                        <div className="raza-animal">{animal.raza}</div>
-                                        <div className="edad-animal">{animal.edad}</div>
-                                        <div className="estado-salud-animal">{animal.estadoSalud}</div>
-                                        <div className="fecha-registro-animal">{animal.fechaRegistro}</div>
-                                        <button className="boton-editar-animal" onClick={mostrarEditarAnimal}>Editar
-                                        </button>
+                                        <div className="texto-mascota">{animal.nombre}</div>
+                                        <div className="texto-mascota">{animal.especie}</div>
+                                        <div className="texto-mascota">{animal.raza}</div>
+                                        <div className="texto-mascota">{animal.edad}</div>
+                                        <div className="texto-mascota">{animal.estadoSalud}</div>
+                                        <div className="texto-mascota">{animal.fechaRegistro}</div>
+                                        <div className="texto-mascota">{animal.perdida ? 'Perdida' : 'No perdida'}</div>
+                                        <div className="texto-mascota">{animal.adopcion ? 'En adopción' : 'No en adopción'}</div>
+                                        {isAuthenticated && user.nombreUsuario === nombreUsuario ?
+                                            <button className="boton-editar-animal" onClick={() => mostrarEditarAnimal(animal._id)}>Editar</button>
+                                            : null
+                                        }
                                     </div>
                                 )
                             })
