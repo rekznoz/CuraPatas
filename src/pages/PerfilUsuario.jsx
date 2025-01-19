@@ -261,14 +261,22 @@ export default function PerfilUsuario() {
                             animales.map((animal, index) => {
                                 return (
                                     <div key={index} className="animal">
-                                        <div className="texto-mascota">{animal.nombre}</div>
-                                        <div className="texto-mascota">{animal.especie}</div>
-                                        <div className="texto-mascota">{animal.raza}</div>
-                                        <div className="texto-mascota">{animal.edad}</div>
-                                        <div className="texto-mascota">{animal.estadoSalud}</div>
-                                        <div className="texto-mascota">{animal.fechaRegistro}</div>
-                                        <div className="texto-mascota">{animal.perdida ? 'Perdida' : 'No perdida'}</div>
-                                        <div className="texto-mascota">{animal.adopcion ? 'En adopción' : 'No en adopción'}</div>
+                                        <h1>{animal.nombre}</h1>
+                                        <div className="texto-mascota"><strong>Especie: </strong>{animal.especie}</div>
+                                        <div className="texto-mascota"><strong>Raza: </strong>{animal.raza}</div>
+                                        <div className="texto-mascota"><strong>Edad: </strong>{animal.edad}</div>
+                                        <div className="texto-mascota"><strong>Salud: </strong>{animal.estadoSalud}</div>
+                                        <div className="texto-mascota"><strong>Fecha de Registro: </strong>{animal.fechaRegistro}</div>
+                                        {
+                                            animal.perdida ?
+                                                <div className="texto-mascota"><strong>Mascota Perdida</strong></div>
+                                                : null
+                                        }
+                                        {
+                                            animal.adopcion ?
+                                                <div className="texto-mascota"><strong>Mascota en Adopción</strong></div>
+                                                : null
+                                        }
                                         {isAuthenticated && user.nombreUsuario === nombreUsuario ?
                                             <button className="boton-editar-animal" onClick={() => mostrarEditarAnimal(animal._id)}>Editar</button>
                                             : null
