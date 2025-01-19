@@ -8,7 +8,13 @@ const animalesSchema = new Schema({
   edad: { type: Number, required: true },
   estadoSalud: { type: String, required: true },
   duenio: { type: String, required: true },
-  fechaRegistro: { type: String, required: true, default: () => currentDate.toLocaleDateString() },
+  fechaRegistro: {
+    type: String,
+    required: true,
+    default: () => currentDate.toLocaleDateString(),
+  },
+  tamanio: { type: Number, required: false },
+  perdida: { type: Boolean, required: false}
 });
 
 export default model("Animales", animalesSchema);
