@@ -83,6 +83,16 @@ export default function Mascotas() {
                                 <p><strong>Estado de Salud:</strong> {animal.estadoSalud}</p>
                                 <p><strong>Dueño:</strong> {animal.duenio}</p>
                                 <p><strong>Registrado el:</strong> {animal.fechaRegistro}</p>
+                                {
+                                    animal.perdida ?
+                                        <p><strong>Mascota Perdida</strong></p>
+                                        : null
+                                }
+                                {
+                                    animal.adopcion ?
+                                        <p><strong>Mascota en Adopción</strong></p>
+                                        : null
+                                }
                             </Link>
                         ))}
                     </div>
