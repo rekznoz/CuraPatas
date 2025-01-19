@@ -199,3 +199,32 @@ export const eliminarUsuario = async (req, res) => {
       .json({ error: "Error al borrar el usuario", details: error.message });
   }
 };
+
+const agregarMascota = async (req, res) => {
+    const { id } = req.params;
+    const { mascota } = req.body;
+
+    if (!id || !mascota) {
+        return res.status(400).json({ error: "Todos los campos son requeridos" });
+    }
+
+    try {
+        // Buscar el usuario por ID
+        const usuario = await Usuarios.findById(id);
+
+        if (!usuario) {
+        return res.status(404).json({ error: "Usuario no encontrado" });
+        }
+
+        // Agregar la mascota al usuario
+        usuario.animales.push(mascota);
+        await usuario.save();
+
+        res.json({ message: "Mascota agregada con éxito", usuario });
+    } catch (error) {
+        res
+        .status(500)
+        .json({ error: "Error al agregar la mascota", details: error.message });
+    }
+}
+
