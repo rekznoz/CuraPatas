@@ -148,7 +148,7 @@
     border-radius: 8px;
 }
 
-.nombre-animal {
+.animal h1 {
     font-size: 20px;
     font-weight: bold;
     color: #AAAAAA;
@@ -167,6 +167,10 @@
 
 .texto-mascota {
     font-size: 16px;
+}
+
+.texto-mascota strong {
+    font-weight: bold;
 }
 
 /* Modal de edición de usuario */
