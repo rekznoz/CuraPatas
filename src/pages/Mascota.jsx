@@ -1,4 +1,4 @@
-import {useLoaderData, useNavigate, useParams} from "react-router-dom";
+import {Link, useLoaderData, useNavigate, useParams} from "react-router-dom";
 import "../css/mascota.css";
 import {useEffect, useState} from "react";
 
@@ -41,7 +41,7 @@ export default function Mascota() {
                     <p><strong>Raza:</strong> {animal.raza}</p>
                     <p><strong>Edad:</strong> {animal.edad} años</p>
                     <p><strong>Estado de Salud:</strong> {animal.estadoSalud}</p>
-                    <p><strong>Dueño:</strong> {animal.duenio}</p>
+                    <p><strong>Dueño:</strong> <Link to={`/usuario/${animal.duenio}`}>{animal.duenio}</Link></p>
                     <p><strong>Registrado el:</strong> {animal.fechaRegistro}</p>
                 </div>
             </div>
