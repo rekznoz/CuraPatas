@@ -24,7 +24,7 @@ const validationSchema = object({
 })
 
 const usuarioVacio = {
-    nombreUsuario: 'brad_vickers',
+    nombreUsuario: 'rafael',
     correo: 'rafa@asd.com',
     secreto: 'asdasd',
     terminos: false
@@ -52,7 +52,11 @@ export default function Login() {
     const onSubmit = async (values, {resetForm}) => {
         if (registro) {
             try {
-                await registrarUsuario(values)
+                await registrarUsuario(values).then(
+                    res => {
+                        login(values)
+                    }
+                )
                 alert('Usuario registrado correctamente')
             } catch (error) {
                 alert('Error al registrar el usuario')
