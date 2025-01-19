@@ -3,10 +3,10 @@ import { Router } from 'express';
 import {
   crearUsuario,
   obtenerUsuarios,
-  obtenerUsuario,
   editarUsuario,
   eliminarUsuario,
-  inicioSesion
+  inicioSesion,
+  obtenerUsuarioPorNombre
 } from '../controllers/usuarioController.js';
 
 const router = Router();
@@ -18,7 +18,7 @@ router.post('/', crearUsuario);
 router.get('/', obtenerUsuarios);
 
 // Obtener un usuario por username
-router.get('/:username', obtenerUsuario);
+router.get('/u/:nombreUsuario', obtenerUsuarioPorNombre);
 
 // Iniciar sesión
 router.post('/login', inicioSesion);
