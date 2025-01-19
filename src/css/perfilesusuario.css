@@ -1,4 +1,3 @@
-
 /* Estilos del encabezado del perfil */
 
 .encabezado-perfil {
@@ -49,165 +48,135 @@
 
 .informacion-perfil-usuario {
     background-color: var(--fondo-principal);
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
+    width: 60%;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
+    border-radius: 8px;
 }
 
 .bloque-informacion {
-    flex: 1;
-    background-color: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-
-.bloque-informacion h4 {
-    font-size: 16px;
-    color: #888;
-    margin-bottom: 5px;
-}
-
-.bloque-informacion p {
-    margin: 0;
-    font-size: 14px;
-}
-
-@media (max-width: 999px) {
-    .informacion-perfil-usuario {
-        flex-direction: column;
-        gap: 20px;
-    }
-}
-
-/* Estilos de la sección de mascotas */
-
-.seccion-mascotas-perfil {
-    background: var(--fondo-principal);
     padding: 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 20px;
-
-}
-
-.encabezado-seccion-mascotas {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
-.encabezado-seccion-mascotas h3 {
-    margin: 0;
-    font-size: 20px;
-    font-weight: bold;
+    border-radius: 8px;
+    background-color: var(--fondo-principal);
+    border: 5px solid #888888;
     color: var(--color-texto-principal);
 }
 
-.encabezado-seccion-mascotas button {
-    background: #4CAF50;
+.bloque-informacion h4 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #AAAAAA;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 1px #000;
+}
+
+.bloque-informacion p {
+    font-size: 16px;
+}
+
+@media (max-width: 1000px) {
+    .informacion-perfil-usuario {
+        width: 80%;
+    }
+}
+
+@media (max-width: 800px) {
+    .informacion-perfil-usuario {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Estilos de la sección de Animales */
+
+/*
+
+<div className="seccion-animales">
+    <h3>Mis Animales</h3>
+    <button className="boton-agregar-animal" onClick={mostrarAgregarAnimal}>Agregar Animal</button>
+    <div className="lista-animales">
+        {
+            animales.map((animal, index) => {
+                return (
+                    <div key={index} className="animal">
+                        <img className="foto-animal"
+                             src="https://mighty.tools/mockmind-api/content/human/122.jpg"
+                             alt="animal"/>
+                        <div className="nombre-animal">{animal.nombre}</div>
+                        <div className="especie-animal">{animal.especie}</div>
+                        <div className="raza-animal">{animal.raza}</div>
+                        <div className="edad-animal">{animal.edad}</div>
+                        <div className="estado-salud-animal">{animal.estadoSalud}</div>
+                        <div className="fecha-registro-animal">{animal.fechaRegistro}</div>
+                        <button className="boton-editar-animal" onClick={mostrarEditarAnimal}>Editar</button>
+                    </div>
+                )
+            })
+        }
+    </div>
+</div>
+
+ */
+
+.seccion-animales {
+    background-color: var(--fondo-principal);
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.boton-agregar-animal {
+    background: #007bff;
     color: white;
     border: none;
     padding: 8px 16px;
     border-radius: 4px;
     cursor: pointer;
+    margin-bottom: 20px;
 }
 
-.encabezado-seccion-mascotas button:hover {
-    background: #45a049;
+.lista-animales {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    width: 100%;
 }
 
-.lista-mascotas {
+.animal {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
     gap: 10px;
-}
-
-.carta-mascota {
-    background: #f9f9f9;
-    border: 1px solid #e0e0e0;
+    padding: 20px;
     border-radius: 8px;
-    padding: 10px;
-    width: calc(50% - 15px);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.foto-mascota {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #ddd;
-    border: 2px solid #007bff;
-}
-
-.detalles-mascota {
-    flex-grow: 1;
-}
-
-.nombre-mascota {
-    font-size: 16px;
-    font-weight: bold;
-    margin: 0;
-}
-
-.informacion-mascota {
-    font-size: 14px;
-    color: #666;
-    margin: 0;
-}
-
-@media (max-width: 999px) {
-    .encabezado-seccion-mascotas {
-        flex-direction: column;
-        gap: 20px;
-    }
-    .carta-mascota {
-        width: 100%;
-    }
-}
-
-.formulario-agregar-mascota {
-    background: var(--fondo-principal);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-    justify-content: center;
-    padding-left: 25%;
-    padding-right: 25%;
-}
-
-.formulario-agregar-mascota form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.formulario-agregar-mascota h4 {
-    margin: 0;
-    font-size: 20px;
-    font-weight: bold;
+    background-color: var(--fondo-principal);
+    border: 5px solid #888888;
     color: var(--color-texto-principal);
 }
 
-.formulario-agregar-mascota form input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.foto-animal {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
-.formulario-agregar-mascota form button {
+.nombre-animal {
+    font-size: 20px;
+    font-weight: bold;
+    color: #AAAAAA;
+    text-shadow: 1px 1px 1px #000;
+}
+
+.boton-editar-animal {
     background: #007bff;
     color: white;
     border: none;
@@ -216,6 +185,349 @@
     cursor: pointer;
 }
 
-.formulario-agregar-mascota form button:hover {
+.especie-animal {
+    font-size: 16px;
+}
+
+.raza-animal {
+    font-size: 16px;
+}
+
+.edad-animal {
+    font-size: 16px;
+}
+
+.estado-salud-animal {
+    font-size: 16px;
+}
+
+.fecha-registro-animal {
+    font-size: 16px;
+}
+
+/* Modal de edición de usuario */
+
+/*
+<div className="modal-editar-usuario">
+{
+    editar ?
+        <Formik
+            initialValues={usuario}
+            validationSchema={validationSchema}
+            onSubmit={(values) => {
+                handleSave(values)
+            }}
+        >
+            {({values, handleChange, handleBlur, handleSubmit, errors, touched}) => (
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="nombre">Nombre</label>
+                        <input
+                            type="text"
+                            name="nombre"
+                            id="nombre"
+                            value={values.nombre}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                        {errors.nombre && touched.nombre ? (
+                            <div className="error">{errors.nombre}</div>
+                        ) : null}
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="correo">Correo</label>
+                        <input
+                            type="email"
+                            name="correo"
+                            id="correo"
+                            value={values.correo}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                        {errors.correo && touched.correo ? (
+                            <div className="error">{errors.correo}</div>
+                        ) : null}
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="ubicacion">Ubicación</label>
+                        <input
+                            type="text"
+                            name="ubicacion"
+                            id="ubicacion"
+                            value={values.ubicacion}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                        {errors.ubicacion && touched.ubicacion ? (
+                            <div className="error">{errors.ubicacion}</div>
+                        ) : null}
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="telefono">Teléfono</label>
+                        <input
+                            type="text"
+                            name="telefono"
+                            id="telefono"
+                            value={values.telefono}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                        {errors.telefono && touched.telefono ? (
+                            <div className="error">{errors.telefono}</div>
+                        ) : null}
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="descripcion">Descripción</label>
+                        <textarea
+                            name="descripcion"
+                            id="descripcion"
+                            value={values.descripcion}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                        {errors.descripcion && touched.descripcion ? (
+                            <div className="error">{errors.descripcion}</div>
+                        ) : null
+                        }
+                    </div>
+                    <button type="submit">Guardar</button>
+                </form>
+            )}
+        </Formik>
+        : null
+}
+</div>
+ */
+
+.modal-editar-usuario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-editar-usuario form {
+    background-color: var(--fondo-principal);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    border: 5px solid #888888;
+    color: var(--color-texto-principal);
+}
+
+.modal-editar-usuario .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.modal-editar-usuario label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #AAAAAA;
+}
+
+.modal-editar-usuario input, .modal-editar-usuario textarea {
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #888888;
+}
+
+.modal-editar-usuario button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-editar-usuario button:hover {
     background: #0056b3;
 }
+
+.error {
+    color: red;
+    font-size: 14px;
+}
+
+/* Modal agregar animal */
+
+/*
+
+<div className="modal-agregar-animal">
+<Formik
+    initialValues={animal}
+    validationSchema={validacionAnimal}
+    onSubmit={(values) => {
+        console.log(values)
+    }}
+>
+    {({values, handleChange, handleBlur, handleSubmit, errors, touched}) => (
+        <form onSubmit={handleSubmit}>
+            <div className="form-group">
+                <label htmlFor="nombre">Nombre</label>
+                <input
+                    type="text"
+                    name="nombre"
+                    id="nombre"
+                    value={values.nombre}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                />
+                {errors.nombre && touched.nombre ? (
+                    <div className="error">{errors.nombre}</div>
+                ) : null}
+            </div>
+            <div className="form-group">
+                <label htmlFor="especie">Especie</label>
+                <input
+                    type="text"
+                    name="especie"
+                    id="especie"
+                    value={values.especie}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                />
+                {errors.especie && touched.especie ? (
+                    <div className="error">{errors.especie}</div>
+                ) : null}
+            </div>
+            <div className="form-group">
+                <label htmlFor="raza">Raza</label>
+                <input
+                    type="text"
+                    name="raza"
+                    id="raza"
+                    value={values.raza}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                />
+                {errors.raza && touched.raza ? (
+                    <div className="error">{errors.raza}</div>
+                ) : null}
+            </div>
+            <div className="form-group">
+                <label htmlFor="edad">Edad</label>
+                <input
+                    type="text"
+                    name="edad"
+                    id="edad"
+                    value={values.edad}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                />
+                {errors.edad && touched.edad ? (
+                    <div className="error">{errors.edad}</div>
+                ) : null}
+            </div>
+            <div className="form-group">
+                <label htmlFor="estadoSalud">Estado de Salud</label>
+                <input
+                    type="text"
+                    name="estadoSalud"
+                    id="estadoSalud"
+                    value={values.estadoSalud}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                />
+                {errors.estadoSalud && touched.estadoSalud ? (
+                    <div className="error">{errors.estadoSalud}</div>
+                ) : null
+                }
+            </div>
+            <div className="form-group">
+                <label htmlFor="perdida">Perdida</label>
+                <input
+                    type="checkbox"
+                    name="perdida"
+                    id="perdida"
+                    value={values.perdida}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                />
+                {errors.perdida && touched.perdida && <div className="error">{errors.perdida}</div>}
+            </div>
+            <button type="submit">Guardar</button>
+            <button onClick={mostrarAgregarAnimal}>Cancelar</button>
+        </form>
+    )}
+</Formik>
+</div>
+
+ */
+
+.modal-agregar-animal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-agregar-animal form {
+    background-color: var(--fondo-principal);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    border: 5px solid #888888;
+    color: var(--color-texto-principal);
+}
+
+.modal-agregar-animal .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.modal-agregar-animal .form-group-checkbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.modal-agregar-animal label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #AAAAAA;
+}
+
+.modal-agregar-animal input, .modal-agregar-animal textarea {
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #888888;
+}
+
+
+.modal-agregar-animal button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-agregar-animal button:hover {
+    background: #0056b3;
+}
+
+/* Modal editar animal */
