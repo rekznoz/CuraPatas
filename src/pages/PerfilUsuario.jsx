@@ -10,7 +10,7 @@ import "../css/perfilesusuario.css";
 import {AuthContext} from "../context/AuthContext.jsx";
 import {editarUsuario} from "../config/AuthService.jsx";
 import {useLoaderData} from "react-router-dom";
-import {agregarAnimal, obtenerAnimales} from "../config/AnimalesService.jsx";
+import {agregarAnimal, obtenerAnimalesUsuario} from "../config/AnimalesService.jsx";
 
 const validacionPerfil = object({
     foto: string()
@@ -200,7 +200,7 @@ export default function PerfilUsuario() {
 
     // obtener animales del usuario
     useEffect(() => {
-        obtenerAnimales(nombreUsuario)
+        obtenerAnimalesUsuario(nombreUsuario)
             .then(response => {
                 console.log(response)
                 setAnimales(response)
