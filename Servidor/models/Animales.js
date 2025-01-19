@@ -13,8 +13,7 @@ const animalesSchema = new Schema({
     required: true,
     default: () => currentDate.toLocaleDateString(),
   },
-  tamanio: { type: Number, required: false },
-  perdida: { type: Boolean, required: false}
+  perdida: { type: Boolean, required: false, default: false}
 });
 
 export default model("Animales", animalesSchema);

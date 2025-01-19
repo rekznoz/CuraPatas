@@ -11,8 +11,7 @@ export const crearAnimal = async (req, res) => {
     !raza ||
     !edad ||
     !estadoSalud ||
-    !duenio ||
-    !fechaRegistro
+    !duenio 
   ) {
     return res.status(400).json({ error: "Todos los campos son requeridos" });
   }
@@ -26,7 +25,7 @@ export const crearAnimal = async (req, res) => {
       edad,
       estadoSalud,
       duenio,
-      fechaRegistro,
+      
     });
     await animal.save();
     res.json({ message: "Animal registrado con éxito", animal });
