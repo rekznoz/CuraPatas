@@ -7,6 +7,7 @@ import PerfilUsuario from "../pages/PerfilUsuario.jsx";
 import Mascotas from "../pages/Mascotas.jsx";
 import Mascota from "../pages/Mascota.jsx";
 import {obtenerPerfilePorUsername} from "../config/PerfilService.jsx";
+import {obtenerAnimal, obtenerAnimales} from "../config/AnimalesService.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -34,10 +35,12 @@ export const router = createBrowserRouter([
             {
                 path: "mascotas",
                 element: <Mascotas/>,
+                loader: obtenerAnimales,
             },
             {
                 path: "mascota/:id",
                 element: <Mascota/>,
+                loader: obtenerAnimal,
             }
         ],
     },
