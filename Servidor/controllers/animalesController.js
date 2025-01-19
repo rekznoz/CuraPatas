@@ -105,7 +105,7 @@ export const obtenerAnimalesPorNombre = async (req, res) => {
 
     try {
         // Buscar el usuario por nombre
-        const animal = await Animales.find({nombre});
+        const animal = await Animales.find({duenio: nombre});
         res.json(animal);
     } catch (error) {
         res
