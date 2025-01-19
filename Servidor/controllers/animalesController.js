@@ -1,4 +1,5 @@
 import Animales from "../models/Animales.js";
+import Usuarios from "../models/Usuarios.js";
 
 export const crearAnimal = async (req, res) => {
   const { nombre, especie, raza, edad, estadoSalud, duenio, fechaRegistro } =
@@ -29,6 +30,14 @@ export const crearAnimal = async (req, res) => {
     });
     await animal.save();
     res.json({ message: "Animal registrado con éxito", animal });
+
+    // agregar animal al usuario desde el servidor :D
+    const usuario = await Usuarios.find({ nombreUsuario: duenio });
+    if (usuario) {
+      usuario[0].animales.push(animal._id);
+      await usuario[0].save();
+    }
+
   } catch (error) {
     res
       .status(500)
