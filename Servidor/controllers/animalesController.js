@@ -138,26 +138,17 @@ export const editarAnimal = async (req, res) => {
 };
 
 export const eliminarAnimal = async (req, res) => {
-  const { nombre } = req.body;
+  const { _id } = req.body;
 
   // Validación de campos
-  if (!nombre) {
-      return res.status(400).json({ error: 'El nombre es requerido para eliminar un animal' });
+  if (!_id) {
+      return res.status(400).json({ error: 'La ID es requerida para eliminar un animal' });
   }
 
   try {
       // Buscar y eliminar el animal por nombre
-      const resultadoAnimal = await Animales.find({ nombre });
-
-      if (!resultadoAnimal) {
-          return res.status(404).json({ error: 'Animal no encontrado' });
-      }
-      
-      const { _id } = resultadoAnimal[0]
       const animalBorrado = await Animales.findByIdAndDelete(_id)
-
-
-      res.json({ message: "Animal borrado con éxito", animal: resultadoAnimal });
+      res.json({ message: "Animal borrado con éxito" });
   } catch (error) {
       res.status(500).json({ error: 'Error al borrar el animal', details: error.message });
   }
